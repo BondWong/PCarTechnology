@@ -17,14 +17,14 @@ public class SelectParkingLotController extends ActionSupport implements Session
 	 */
 	private static final long serialVersionUID = -4605961100140558084L;
 	
-	private String parkingLotId;
+	private String parkingLotName;
 	
 	private ParkingLot selectedParkingLot;
 	private Map<String,Object> httpSession;
 	private Map<String,String[]>param;
 	
 	public String execute() throws Exception{
-		setParkingLotId(param.get("parkingLotId")[0]);
+		parkingLotName = param.get("parkingLotName")[0];
 		
 		boolean isInSession = false;
 		ParkingLots pls = (ParkingLots)httpSession.get("parkingLots");
@@ -35,7 +35,7 @@ public class SelectParkingLotController extends ActionSupport implements Session
 		}
 		
 		boolean isSpotLoaded = false;
-		selectedParkingLot = pls.getParkingLot(parkingLotId);
+		selectedParkingLot = pls.getParkingLot(parkingLotName);
 		isSpotLoaded = selectedParkingLot.isSpotLoaded();
 		
 		if(!isSpotLoaded){
@@ -52,24 +52,16 @@ public class SelectParkingLotController extends ActionSupport implements Session
 	@Override
 	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
-		setHttpSession(session);
+		httpSession = session;
 	}
 
 	@Override
 	public void setParameters(Map<String, String[]> parameters) {
 		// TODO Auto-generated method stub
-		setParam(parameters);
+		param = parameters;
 	}
-
-	public void setHttpSession(Map<String,Object> httpSession) {
-		this.httpSession = httpSession;
-	}
-
-	public void setParkingLotId(String parkingLotId) {
-		this.parkingLotId = parkingLotId;
-	}
-
-	public void setParam(Map<String,String[]> param) {
-		this.param = param;
+	
+	public ParkingLot getSelectedParkingLot(){
+		return selectedParkingLot;
 	}
 }

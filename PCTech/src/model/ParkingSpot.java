@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ParkingSpot {
 	private String id;
-	private Character status;
+	private String status;
 	private Date entranceTime;
 	private Date departureTime;
 	public String getId() {
@@ -19,10 +19,10 @@ public class ParkingSpot {
 	public void setEntranceTime(Date entranceTime) {
 		this.entranceTime = entranceTime;
 	}
-	public Character getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(Character status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public Date getDepartureTime() {

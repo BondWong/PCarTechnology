@@ -25,18 +25,18 @@ public class ParkingLotDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void load(String parkingLotId,List<ParkingSpot> parkingSpots){
+	public void load(String parkingLotId,Map<String,ParkingSpot> parkingSpots){
 		connectToDataSource(parkingLotId);
 		List<Map<String,Object>> results = jdbcTemplate.queryForList(SQL);
 		
 		for(Map<String,Object> data : results){
 			ParkingSpot ps = new ParkingSpot();
 			ps.setId((String)data.get("id"));
-			ps.setStatus((Character)data.get("status"));
+			ps.setStatus((String)data.get("status"));
 			ps.setEntranceTime((Date)data.get("entrancetime"));
 			ps.setDepartureTime((Date)data.get("departuretime"));
 			
-			parkingSpots.add(ps);
+			parkingSpots.put(ps.getId(),ps);
 		}
 	}
 

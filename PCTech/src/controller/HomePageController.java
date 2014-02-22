@@ -22,11 +22,7 @@ public class HomePageController extends ActionSupport implements SessionAware{
 	@Override
 	public void setSession(Map<String, Object> session) {
 		// TODO Auto-generated method stub
-		setHttpSession(session);
-	}
-
-	public void setHttpSession(Map<String,Object> httpSession) {
-		this.httpSession = httpSession;
+		httpSession = session;
 	}
 	
 	public String execute() throws Exception{
@@ -35,9 +31,11 @@ public class HomePageController extends ActionSupport implements SessionAware{
 		isParkingLotsExisted = (parkingLots==null?false:true);
 		
 		if(!isParkingLotsExisted){
+			System.out.println("no parkinglots fund");
 			ParkingLots pls = new ParkingLots();
 			pls.load();
 			httpSession.put("parkingLots",pls);
+			System.out.println(((ParkingLots)httpSession.get("parkingLots")).getParkingLots());
 		}
 		
 		return "success";

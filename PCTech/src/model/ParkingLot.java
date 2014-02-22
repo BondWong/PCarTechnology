@@ -1,10 +1,10 @@
 package model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParkingLot {
-	private String id;
 	private String name;
 	private String address;
 	private Date joinTime;
@@ -12,20 +12,14 @@ public class ParkingLot {
 	private String architecture;
 	private String client;
 	private String fee;
-	private String bussinessHours;
+	private String businessHours;
 	private String facility;
 	private Float longitude;
 	private Float latitude;
 	private String remark;
-	private List<ParkingSpot> parkingSpots;
+	private Map<String,ParkingSpot> parkingSpots;
 	private ParkingLotDAO parkingLotDAO;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -68,11 +62,11 @@ public class ParkingLot {
 	public void setFee(String fee) {
 		this.fee = fee;
 	}
-	public String getBussinessHours() {
-		return bussinessHours;
+	public String getBusinessHours() {
+		return businessHours;
 	}
-	public void setBussinessHours(String bussinessHours) {
-		this.bussinessHours = bussinessHours;
+	public void setBusinessHours(String businessHours) {
+		this.businessHours = businessHours;
 	}
 	public String getFacility() {
 		return facility;
@@ -98,25 +92,12 @@ public class ParkingLot {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public List<ParkingSpot> getParkingSpots() {
-		return parkingSpots;
-	}
-	public void setParkingSpots(List<ParkingSpot> parkingSpots) {
-		this.parkingSpots = parkingSpots;
-	}
-	
-	public ParkingLotDAO getParkingLotDAO() {
-		return parkingLotDAO;
-	}
-	public void setParkingLotDAO(ParkingLotDAO parkingLotDAO) {
-		this.parkingLotDAO = parkingLotDAO;
-	}
 	
 	public boolean equals(Object other){
 		if(other instanceof ParkingLot){
 			ParkingLot pl = (ParkingLot)other;
 			
-			if(pl.getId().equals(this.getId())){
+			if(pl.getName().equals(this.getName())){
 				return true;
 			}
 		}
@@ -125,16 +106,21 @@ public class ParkingLot {
 	}
 	
 	public int hashCode(){
-		return getId().hashCode();
+		return getName().hashCode();
 	}
 	
 	public boolean isSpotLoaded(){
-		return !getParkingSpots().isEmpty();
+		if(parkingSpots==null||parkingSpots.isEmpty())
+			return false;
+		else
+			return true;
 	}
 	
 	public void load(){
 		parkingLotDAO = ParkingLotDAO.createInstance();
-		parkingLotDAO.load(getId(), getParkingSpots());
+		parkingSpots = new HashMap<String,ParkingSpot>();
+		parkingLotDAO.load(getName(), parkingSpots);
+		System.out.println(getName()+": "+parkingSpots);
 	}
 	
 }

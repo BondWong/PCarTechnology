@@ -12,14 +12,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class ParkingLotsDAO{
 	private ApplicationContext applicationContext;
 	private JdbcTemplate jdbcTemplate;
-	private static final String SQL = "select * from parkinglot";
+	private static final String SQL = "select * from parkinglots";
 	
 	public static ParkingLotsDAO createInstance(){
 		return new ParkingLotsDAO();
 	}
 	
 	private void connectToDataSource(){
-		applicationContext = new ClassPathXmlApplicationContext();
+		applicationContext = new ClassPathXmlApplicationContext("local-datasource.xml");
 		DataSource dataSource = (DataSource) applicationContext.getBean("parkingLots");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
