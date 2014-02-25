@@ -20,6 +20,8 @@ public class SelectParkingLotController extends ActionSupport implements Session
 	private String parkingLotName;
 	
 	private ParkingLot selectedParkingLot;
+	private String errorMessage;
+	
 	private Map<String,Object> httpSession;
 	private Map<String,String[]>param;
 	
@@ -31,6 +33,7 @@ public class SelectParkingLotController extends ActionSupport implements Session
 		isInSession = pls==null?false:true;
 		
 		if(!isInSession){
+			errorMessage = "error";
 			return "error";
 		}
 		
@@ -64,4 +67,9 @@ public class SelectParkingLotController extends ActionSupport implements Session
 	public ParkingLot getSelectedParkingLot(){
 		return selectedParkingLot;
 	}
+	
+	public String getErrorMessage(){
+		return errorMessage;
+	}
+	
 }

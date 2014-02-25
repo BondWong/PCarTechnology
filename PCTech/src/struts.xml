@@ -4,11 +4,30 @@
 	"http://struts.apache.org/dtds/struts-2.0.dtd">
 	
 <struts>
-	<package name="dataFetch" namespace="/" extends="struts-default">
-		<action name="DFA_*" class="model.DataFetchAction">
-			<param name="requestType">{1}</param>
-			<result name="mobile">/website.jsp</result>
-			<result name="website">/mobile.jsp</result>
+	<package name="controllers" namespace="/" extends="json-default">
+		
+		<action name="getParkingLots" class="controller.GetParkingLotsController">
+			<result type="json">
+  				<param name="root">
+    				necessaryData
+  				</param>
+			</result>
 		</action>
+		
+		<action name="selectParkingLot" class="controller.SelectParkingLotController">
+			<result type="json" name="success">
+				<param name="root">
+					selectedParkingLot
+				</param>
+			</result>
+			<result type="json" name="error">
+				<param name="root">
+					errorMessage
+				</param>
+			</result>
+			
+		</action>
+		
 	</package>
+	
 </struts>
