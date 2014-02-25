@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.Map;
-import java.util.Set;
 
 import model.ParkingLots;
 
@@ -9,7 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class GetParkingLotsController extends ActionSupport implements SessionAware{
+public class HomePageController extends ActionSupport implements SessionAware{
 
 	/**
 	 * 
@@ -17,7 +16,6 @@ public class GetParkingLotsController extends ActionSupport implements SessionAw
 	private static final long serialVersionUID = -8309384711637576320L;
 	
 	private ParkingLots parkingLots;
-	private Set<String> necessaryData;
 	
 	private Map<String,Object> httpSession;
 	
@@ -33,18 +31,14 @@ public class GetParkingLotsController extends ActionSupport implements SessionAw
 		isParkingLotsExisted = (parkingLots==null?false:true);
 		
 		if(!isParkingLotsExisted){
-			parkingLots = new ParkingLots();
-			parkingLots.load();
-			httpSession.put("parkingLots",parkingLots);
+			System.out.println("no parkinglots fund");
+			ParkingLots pls = new ParkingLots();
+			pls.load();
+			httpSession.put("parkingLots",pls);
+			System.out.println(((ParkingLots)httpSession.get("parkingLots")).getParkingLots());
 		}
 		
-		necessaryData = parkingLots.getParkingLots().keySet();
-		
 		return "success";
-	}
-
-	public Set<String> getNecessaryData() {
-		return necessaryData;
 	}
 	
 }

@@ -59,6 +59,7 @@ public class ParkingLots {
 		pls.remove(parkingLot.getName());
 		pls.put(parkingLot.getName(),parkingLot);
 		setParkingLots(pls);
+		
 	}
 	
 }

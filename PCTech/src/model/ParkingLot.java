@@ -120,6 +120,7 @@ public class ParkingLot {
 		parkingLotDAO = ParkingLotDAO.createInstance();
 		parkingSpots = new HashMap<String,ParkingSpot>();
 		parkingLotDAO.load(getName(), parkingSpots);
+		System.out.println(getName()+": "+parkingSpots);
 	}
 	
 }
