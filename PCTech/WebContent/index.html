@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="何炬江">
+
+    <title>Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+
+    <link href="css/custom.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- Docs master nav -->
+    <header class="container">
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Parking</a>
+            </div>
+            <nav class="collapse navbar-collapse pc-nav">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">主页</a>
+                    </li>
+                    <li>
+                        <a href="#">实时</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="socials">
+                                <a href="#" class="twitter-share-button">Google+</a>
+                            </li>
+                            <li class="socials">
+                                <a href="#" class="twitter-share-button">Facebook</a>
+                            </li>
+                            <li class="socials">
+                                <a href="#" class="twitter-share-button">Tweet</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 横幅 -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 id="hello">Hello, world!</h1>
+            <p>...</p>
+            <p>
+                <button class="btn btn-primary btn-lg" role="button" onclick="LoadTxt()">Learn more &raquo;</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- 主题内容 -->
+    <div id="maincontent" class="maincontent">
+        <div class="container col-md-6 col-md-offset-3 select">
+            <form role="form">
+                <select name="plot" class="form-control" onchange="selectLot(this.value)">
+                    <option value="0" selected>please select parkinglot</option>
+                    <option value="lot1">qianshan</option>
+                    <option value="lot2">xiangzhou</option>
+                    <option value="lot3">jida</option>
+                    <option value="lot4">nanping</option>
+                </select>
+            </form>
+        </div>
+        <br/>
+        <div id="tablelot" class="col-md-6 col-md-offset-3">
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row-fluid">
+                <p class="text-info vertical-center">© Saint Scott 2014.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <!--<script src="//cdn.bootcss.com/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+-->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Ajax requeset -->
+    <script src="js/request.js"></script>
+</body>
+
+</html>
