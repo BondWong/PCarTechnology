@@ -93,6 +93,10 @@ public class ParkingLot {
 		this.remark = remark;
 	}
 	
+	public Map<String,ParkingSpot> getParkingSpots(){
+		return parkingSpots;
+	}
+	
 	public boolean equals(Object other){
 		if(other instanceof ParkingLot){
 			ParkingLot pl = (ParkingLot)other;
