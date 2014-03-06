@@ -14,12 +14,22 @@
 			</result>
 		</action>
 		
-		<action name="selectParkingLot" class="controller.SelectParkingLotController">
-			<result type="json" name="success">
+		<action name="getParkingLotData" class="controller.ParkingLotDataController">
+			<result type="json" name="parkingLotInfo">
 				<param name="root">
 					selectedParkingLot
 				</param>
+				<param name="excludeProperties">
+					selectedParkingLot.parkingSpots
+  				</param>
 			</result>
+			
+			<result type="json" name="parkingSpotInfo">
+				<param name="root">
+					selectedParkingSpots
+				</param>
+			</result>
+			
 			<result type="json" name="error">
 				<param name="root">
 					errorMessage

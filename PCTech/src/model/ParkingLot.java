@@ -1,8 +1,8 @@
 package model;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ParkingLot {
 	private String name;
@@ -17,7 +17,8 @@ public class ParkingLot {
 	private Float longitude;
 	private Float latitude;
 	private String remark;
-	private Map<String,ParkingSpot> parkingSpots;
+	private Set<ParkingSpot> parkingSpots;
+	//private Map<String,ParkingSpot> parkingSpots;
 	private ParkingLotDAO parkingLotDAO;
 	
 	public String getName() {
@@ -93,9 +94,9 @@ public class ParkingLot {
 		this.remark = remark;
 	}
 	
-	public Map<String,ParkingSpot> getParkingSpots(){
+	/*public Map<String,ParkingSpot> getParkingSpots(){
 		return parkingSpots;
-	}
+	}*/
 	
 	public boolean equals(Object other){
 		if(other instanceof ParkingLot){
@@ -122,8 +123,18 @@ public class ParkingLot {
 	
 	public void load(){
 		parkingLotDAO = ParkingLotDAO.createInstance();
-		parkingSpots = new HashMap<String,ParkingSpot>();
+		//parkingSpots = new HashMap<String,ParkingSpot>();
+		parkingSpots = new HashSet<ParkingSpot>();
 		parkingLotDAO.load(getName(), parkingSpots);
+	}
+	
+	public Set<ParkingSpot> fetchTakenParkingSpots(){
+		Set<ParkingSpot> takenParkingSpots = new HashSet<ParkingSpot>();
+		for(ParkingSpot ps : parkingSpots){
+			if(ps.getStatus().equals("1"))
+				takenParkingSpots.add(ps);
+		}
+		return takenParkingSpots;
 	}
 	
 }

@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.ApplicationContext;
@@ -24,7 +25,7 @@ public class ParkingLotDAO {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public void load(String parkingLotId,Map<String,ParkingSpot> parkingSpots){
 		connectToDataSource(parkingLotId);
 		List<Map<String,Object>> results = jdbcTemplate.queryForList(SQL);
@@ -38,8 +39,23 @@ public class ParkingLotDAO {
 			
 			parkingSpots.put(ps.getId(),ps);
 		}
+	}*/
+	
+	@SuppressWarnings("unchecked")
+	public void load(String parkingLotId,Set<ParkingSpot> parkingSpots){
+		connectToDataSource(parkingLotId);
+		List<Map<String,Object>> results = jdbcTemplate.queryForList(SQL);
+		
+		for(Map<String,Object> data : results){
+			ParkingSpot ps = new ParkingSpot();
+			ps.setId((String)data.get("id"));
+			ps.setStatus((String)data.get("status"));
+			ps.setEntranceTime((Date)data.get("entrancetime"));
+			ps.setDepartureTime((Date)data.get("departuretime"));
+			parkingSpots.add(ps);
+		}
 	}
-
+	
 	public void setApplicationContext(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
 	}

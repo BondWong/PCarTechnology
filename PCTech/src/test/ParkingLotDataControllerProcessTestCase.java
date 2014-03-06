@@ -5,28 +5,29 @@ import java.util.Map;
 
 import model.ParkingLot;
 import model.ParkingLots;
-import controller.SelectParkingLotController;
+import controller.ParkingLotDataController;
 import junit.framework.TestCase;
 
-public class SelectParkingLotProcessTestCase extends TestCase{
-	private SelectParkingLotController splc;
+public class ParkingLotDataControllerProcessTestCase extends TestCase{
+	private ParkingLotDataController splc;
 	private Map<String,Object> session;
 	private Map<String,String[]> parameters;
 	
 	public void init(){
-		splc = new SelectParkingLotController();
+		splc = new ParkingLotDataController();
 		session = new HashMap<String,Object>();
 		parameters = new HashMap<String,String[]>();
 		parameters.put("parkingLotName",new String[]{"xxxparkinglot"});
+		parameters.put("requestDataType",new String[]{"parkingLotInfo"});
 		splc.setSession(session);
-		splc.setParameters(parameters);
+		splc.setRequestDataType("parkingLotInfo");
+		splc.setParkingLotName("xxxparkinglot");
 	}
 	
 	public void testSelectParkingLotProcess1() throws Exception{
 		init();
 		
 		String result = splc.execute();
-		System.out.println(splc.getSelectedParkingLot());
 		System.out.println("result: "+result);
 	}
 	
@@ -41,7 +42,6 @@ public class SelectParkingLotProcessTestCase extends TestCase{
 		session.put("parkingLots",pls);
 		
 		String result = splc.execute();
-		System.out.println(splc.getSelectedParkingLot());
 		System.out.println("result: "+result);
 	}
 }

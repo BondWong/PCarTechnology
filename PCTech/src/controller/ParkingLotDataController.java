@@ -1,37 +1,38 @@
 package controller;
 
 import java.util.Map;
+import java.util.Set;
 
 import model.ParkingLot;
 import model.ParkingLots;
+import model.ParkingSpot;
 
-import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class SelectParkingLotController extends ActionSupport implements SessionAware,ParameterAware{
+public class ParkingLotDataController extends ActionSupport implements SessionAware{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4605961100140558084L;
 	
+	private String requestDataType;
 	private String parkingLotName;
 	
 	private ParkingLot selectedParkingLot;
+	private Set<ParkingSpot> selectedParkingSpots;
 	private String errorMessage;
 	
 	private Map<String,Object> httpSession;
-	private Map<String,String[]>param;
 	
 	public String execute() throws Exception{
-		parkingLotName = param.get("parkingLotName")[0];
+		System.out.println(requestDataType+" "+parkingLotName);
 		
 		boolean isInSession = false;
 		ParkingLots pls = (ParkingLots)httpSession.get("parkingLots");
 		isInSession = pls==null?false:true;
-		
 		if(!isInSession){
 			errorMessage = "error";
 			return "error";
@@ -40,7 +41,6 @@ public class SelectParkingLotController extends ActionSupport implements Session
 		boolean isSpotLoaded = false;
 		selectedParkingLot = pls.getParkingLot(parkingLotName);
 		isSpotLoaded = selectedParkingLot.isSpotLoaded();
-		
 		if(!isSpotLoaded){
 			selectedParkingLot.load();
 			pls.saveParkingLot(selectedParkingLot);
@@ -48,8 +48,19 @@ public class SelectParkingLotController extends ActionSupport implements Session
 			httpSession.put("parkingLots",pls);
 		}
 		
-		return "success";
+		selectedParkingSpots = selectedParkingLot.fetchTakenParkingSpots();
+		System.out.println(selectedParkingLot);
+		System.out.println(selectedParkingSpots);
 		
+		return requestDataType;
+		
+	}
+	public void setRequestDataType(String requestDataType){
+		this.requestDataType = requestDataType;
+	}
+	
+	public void setParkingLotName(String parkingLotName){
+		this.parkingLotName = parkingLotName;
 	}
 	
 	@Override
@@ -57,19 +68,18 @@ public class SelectParkingLotController extends ActionSupport implements Session
 		// TODO Auto-generated method stub
 		httpSession = session;
 	}
-
-	@Override
-	public void setParameters(Map<String, String[]> parameters) {
-		// TODO Auto-generated method stub
-		param = parameters;
+	
+	//for json result
+	public String getErrorMessage(){
+		return errorMessage;
+	}
+	
+	public Set<ParkingSpot> getSelectedParkingSpots(){
+		return this.selectedParkingSpots;
 	}
 	
 	public ParkingLot getSelectedParkingLot(){
-		return selectedParkingLot;
-	}
-	
-	public String getErrorMessage(){
-		return errorMessage;
+		return this.selectedParkingLot;
 	}
 	
 }
