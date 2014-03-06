@@ -1,3 +1,4 @@
+<!-- /*theseus instrument: false */ -->
 <!DOCTYPE html>
 <html lang="zh-cn">
 
@@ -25,10 +26,10 @@
 
 <body>
     <!-- Docs master nav -->
-    <header class="container">
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <header class="navbar navbar-default navbar-fixed-top" role="banner">
+        <div class="container">
             <div class="navbar-header">
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -36,7 +37,7 @@
                 </button>
                 <a href="#" class="navbar-brand">Parking</a>
             </div>
-            <nav class="collapse navbar-collapse pc-nav">
+            <nav class="collapse navbar-collapse pc-nav" role="navigation">
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="#">主页</a>
@@ -46,20 +47,19 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social
-                            <b class="caret"></b>
+                    <li id="select-dropdown-menu-1" class="dropdown">
+                        <a id="shown-menu-item" class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            <!--选中option之后，要在这里显示选中值，类似原始select里面的文本框-->
+                            <span class="placeholder">请选择停车场</span>
+                            <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li class="socials">
-                                <a href="#" class="twitter-share-button">Google+</a>
+                        <ul id="parkinglot-list" class="dropdown-menu" role="menu" aria-labelledby="shown-menu-item">
+                            <!-- <li role="presentation" value="xxxplot">
+                                <a role="menuitem" tabindex="1" href="javascript:void(0);">xxxplot</a>
                             </li>
-                            <li class="socials">
-                                <a href="#" class="twitter-share-button">Facebook</a>
-                            </li>
-                            <li class="socials">
-                                <a href="#" class="twitter-share-button">Tweet</a>
-                            </li>
+                            <li role="presentation" value="yyyplot">
+                                <a role="menuitem" tabindex="2" href="javascript:void(0);">yyyplot</a>
+                            </li> -->
                         </ul>
                     </li>
                 </ul>
@@ -69,37 +69,59 @@
 
     <!-- 横幅 -->
     <div class="jumbotron">
-        <div class="container">
-            <h1 id="hello">Hello, world!</h1>
-            <p>...</p>
-            <p>
-                <button class="btn btn-primary btn-lg" role="button" onclick="LoadTxt()">Learn more &raquo;</button>
-            </p>
+        <div id="bulletin" class="container table-responsive">
+
+            <!--<table class="table table-hover">
+    <thead>
+        <tr>
+            <th colspan="4">名称：
+                <span></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="col-md-2">结构型式：</td>
+            <td class="col-md-4"></td>
+            <td class="col-md-2">营业时间：</td>
+            <td class="col-md-4"></td>
+        </tr>
+        <tr>
+            <td>服务对象：</td>
+            <td></td>
+            <td>主要设施：</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>车位总数：</td>
+            <td></td>
+            <td>剩余车位数：</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>收费标准：</td>
+            <td></td>
+            <td>地址：</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>-->
         </div>
     </div>
 
-    <!-- 主题内容 -->
+    <!-- 主体内容 -->
     <div id="maincontent" class="maincontent">
-        <div class="container col-md-6 col-md-offset-3 select">
-            <form role="form">
-                <select name="plot" class="form-control" onchange="selectLot(this.value)">
-                    <option value="0" selected>please select parkinglot</option>
-                    <option value="lot1">qianshan</option>
-                    <option value="lot2">xiangzhou</option>
-                    <option value="lot3">jida</option>
-                    <option value="lot4">nanping</option>
-                </select>
-            </form>
-        </div>
-        <br/>
         <div id="tablelot" class="col-md-6 col-md-offset-3">
+
         </div>
     </div>
 
     <footer id="footer">
         <div class="container">
             <div class="row-fluid">
-                <p class="text-info vertical-center">© Saint Scott 2014.</p>
+                <p class="text-info vertical-center">© Saint Scott 2014.
+                    <span id="log"></span>
+                </p>
             </div>
         </div>
     </footer>
@@ -107,9 +129,11 @@
     <!-- Bootstrap core JavaScript
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <!--
     <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-    <!--<script src="//cdn.bootcss.com/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
 -->
+    <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Ajax requeset -->

@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <layout>
-	<name>parkinglot_3</name>
-	<size>32</size>
-	<width>4</width>
-	<height>8</height>
+    <name>parkinglot_3</name>
+    <size>32</size>
+    <rows>5</rows>
+    <cols>6</cols>
 </layout>

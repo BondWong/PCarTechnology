@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <layout>
     <name>parkinglot_4</name>
     <size>70</size>
-    <width>7</width>
-    <height>10</height>
+    <rows>7</rows>
+    <cols>8</cols>
 </layout>

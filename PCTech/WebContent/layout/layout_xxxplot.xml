@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<layout>
+    <name>parkinglot_1</name>
+    <size>30</size>
+    <rows>5</rows>
+    <cols>6</cols>
+</layout>

@@ -1,3 +1,5 @@
+/*theseus instrument: false */
+
 body {
     font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
     padding-top: 50px;
@@ -27,7 +29,7 @@ footer .container {
 }
 .maincontent {
     height: 800px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 .select {
     padding-bottom: 20px;
@@ -41,7 +43,6 @@ footer .container {
     height: 100%;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: #6699ff !important;
 }
 .empty {
     height: 100%;

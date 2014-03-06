@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        .btn-group.open .dropdown-toggle
+        {
+            -webkit-box-shadow:none;
+            box-shadow:none;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="row">
+            <div class="col-md-12">名称：
+                <span>华彩·俊豪停车库</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">结构型式：
+                <span>室内, 地下, 多层/入口2个/出口2个/限高2.1</span>
+            </div>
+            <div class="col-md-6">营业时间：
+                <span>24小时</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">服务对象：
+                <span>住宅区, 写字楼, 宾馆, 餐饮酒店</span>
+            </div>
+            <div class="col-md-6">
+                <span class="col-xs-3 text-left">收费标准：</span>
+                <span class="col-xs-9">月租：300
+                    <br/>停车费率其他说明：2小时内每小时3元，以上每小时2元，12小时以内不超过10元，24小时以内不超过20元.</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">车位总数：
+                <span>30</span>
+            </div>
+            <div class="col-md-6">剩余车位数：
+                <span>20</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">地址：
+                <span>凤天大道130，132号</span>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    名称：
+                    <span>华彩·俊豪停车库</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>结构型式：
+                    <span>室内, 地下, 多层/入口2个/出口2个/限高2.1</span>
+                </td>
+                <td>营业时间：
+                    <span>24小时</span>
+                </td>
+            </tr>
+            <tr>
+                <td>服务对象：
+                    <span>住宅区, 写字楼, 宾馆, 餐饮酒店</span>
+                </td>
+                <td>收费标准：
+                    <span>月租：300 停车费率其他说明：2小时内每小时3元，以上每小时2元，12小时以内不超过10元，24小时以内不超过20元.
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>车位总数：
+                    <span>30</span>
+                </td>
+                <td>剩余车位数：
+                    <span>20</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">地址：
+                    <span>凤天大道130，132号</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <p>原始的select标签</p>
+    <select>
+        <option value="1">Text 1</option>
+        <option value="2">Text 2</option>
+        <option value="3">Text 3</option>
+    </select>
+    <div id="dropdown1" class="dropdown" style="margin-top:30px;">
+        <div class="btn-group">
+            <a style="font-size:14px;" class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                <!--选中option之后，要在这里显示选中值，类似原始select里面的文本框-->
+                <span class="placeholder">Text 1</span>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation" value="1">
+                    <a role="menuitem" tabindex="1" href="javascript:void(0);">Text 1</a>
+                </li>
+                <li role="presentation" value="2">
+                    <a role="menuitem" tabindex="2" href="javascript:void(0);">Text 2</a>
+                </li>
+                <li role="presentation" value="3">
+                    <a role="menuitem" tabindex="3" href="javascript:void(0);">Text 3</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function customDropDown(ele){
+            this.dropdown=ele;
+            this.placeholder=this.dropdown.find(".placeholder");
+            this.options=this.dropdown.find("ul.dropdown-menu > li");
+            this.val='';
+            this.index=-1;//默认为-1;
+            this.initEvents();
+        }
+        customDropDown.prototype={
+            initEvents:function(){
+                var obj=this;
+                //这个方法可以不写，因为点击事件被Bootstrap本身就捕获了，显示下面下拉列表
+                obj.dropdown.on("click",function(event){
+                    $(this).toggleClass("active");
+                });
+                
+                //点击下拉列表的选项
+                obj.options.on("click",function(){
+                    var opt=$(this);
+                    obj.text=opt.find("a").text();
+                    obj.val=opt.attr("value");
+                    obj.index=opt.index();
+                    obj.placeholder.text(obj.text);
+                });
+            },
+            getText:function(){
+                return this.text;
+            },
+            getValue:function(){
+                return this.val;
+            },
+            getIndex:function(){
+                return this.index;
+            }
+        }
+        $(document).ready(function(){
+            var mydropdown=new customDropDown($("#dropdown1"));
+        });
+    </script>
+</body>
+
+</html>
