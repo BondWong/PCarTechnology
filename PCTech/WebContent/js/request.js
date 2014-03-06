@@ -1,4 +1,3 @@
-/* theseus instrument: false */
 /*jslint browser: true*/
 /*global $, jQuery, console, ActiveXObject, alert*/
 
@@ -14,6 +13,9 @@
         layout_rows, /* 停车场车位行数*/
         mydropdown, layout;
 
+    /**
+     *  Html页面加载完毕后执行此函数
+     */
     $(document).ready(function () {
 
         getLotList("assets/parkinglot_list.json");
@@ -21,13 +23,16 @@
     });
 
     /*
-    <li role='presentation' value='xxxplot'>
-        <a role='menuitem' tabindex='1' href='javascript:void(0);'>xxxplot</a>
-    </li>
-    */
+     *  select菜单选项html模版
+     *  <li role='presentation' value='xxxplot'>
+     *      <a role='menuitem' tabindex='1' href='javascript:void(0);'>xxxplot</a>
+     *  </li>
+     *
+     *  利用getJSON获取停车场列表，动态生成下拉列表html代码，并创建自定义select控件实例
+     * @param {Type} url
+     */
     function getLotList(url) {
-
-        $.getJSON(url).done(function (data) {
+        return $.getJSON(url).done(function (data) {
             var parkinglot_list = [];
             data.forEach(function (value, index) {
                 parkinglot_list.push("<li role='presentation' value='");
@@ -38,73 +43,109 @@
                 parkinglot_list.push(value);
                 parkinglot_list.push("</a></li>");
             });
+
+            // 利用array的join合成html代码后，插入到网页中
             $("#parkinglot-list").html(parkinglot_list.join(''));
+
+            // 创建实例
             mydropdown = new CustomDropDown($("#select-dropdown-menu-1"));
+
         }).fail(function () {
             console.log("getLotList error");
         });
     }
 
+    /**
+     *  通过传入的url获取对应停车场的布局文件，并创建对应二维数组布局（暂时）
+     * @param {String} url
+     */
     function getLayout(url) {
         return $.get(url).done(function (data) {
             layout_rows = parseInt($(data).find('rows').text());
             layout_cols = parseInt($(data).find('cols').text());
 
+            // 创建二维数组，作为停车场布局的标识
             layout = new Array(layout_rows);
-            console.log(layout.length);
             for (var i = 0; i < layout.length; i++) {
                 layout[i] = new Array(layout_cols);
-                console.log(layout[i].length);
             }
         }).fail(function () {
             console.log("getLayout error");
         });
     }
-    var spots;
 
+    /**
+     * 通过传入的url获取对应的停车场的详细信息，进而设置公告板的表格
+     * @param {String} url
+     */
     function getParkinglot(url) {
         return $.getJSON(url).done(function (data) {
+            // 设置公告板的表格
             setBulletin(data);
-            spots = data.parkingSpots[0];
+
+
             data.parkingSpots.forEach(function (value, index) {
                 var reg = /(\w+\d+)-(\d+)-(\d+)/g,
                     result = reg.exec(value.id),
-                    i = parseInt(result[2]),
-                    j = parseInt(result[3]);
-                layout[i][j] = true;
+                    row = parseInt(result[2]),
+                    col = parseInt(result[3]);
+                layout[row][col] = true;
             });
 
             setTableLot();
         }).fail(function () {
-            console.log("getLotList error");
+            console.log("getParkinglot error");
         });
     }
 
+    /**
+     * 通过传入的url获取对应停车场的车位信息，进行实时更新（有些许延迟吧）
+     * @param {String} url
+     */
+    function getParkingSpots(url) {
+        return $.getJSON(url).done(function (data) {
+
+        }).fail(function () {
+            console.log("getParkingSpots error");
+        });
+    }
+
+    /**
+     *  暂时的利用footer文本元素显示调试信息
+     * @param {Object} data
+     */
     function log(data) {
         $("#log").html(JSON.stringify(data));
     }
 
+    /**
+     *  在用户进行点击菜单项时，通过传入的停车场的名称或ID，执行一系列的操作
+     * @param {String} lotname
+     */
     function onParkinglotSelected(lotname) {
         getLayout("layout/layout_" + lotname + ".xml")
             .then(getParkinglot("assets/" + lotname + ".json"));
     }
 
-    /*  tablelot生成如下html代码
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <tbody>
-                    <tr>
-                        <td class="empty">empty</td>
-                        <td class="empty">empty</td>
-                        <td class="empty">empty</td>
-                        <td class="car car11">busy</td>
-                        <td class="empty">empty</td>
-                        <td class="empty">empty</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    */
+    /**
+     * tablelot生成如下html代码
+     *  <div class="table-responsive">
+     *      <table class="table table-striped table-bordered table-hover">
+     *          <tbody>
+     *              <tr>
+     *                  <td class="empty">empty</td>
+     *                  <td class="empty">empty</td>
+     *                  <td class="empty">empty</td>
+     *                  <td class="car car11">busy</td>
+     *                  <td class="empty">empty</td>
+     *                  <td class="empty">empty</td>
+     *              </tr>
+     *          </tbody>
+     *      </table>
+     *  </div>
+     *
+     *
+     */
     function setTableLot() {
         // 设置tablelot
         var table = [];
@@ -115,7 +156,7 @@
                 if (layout[i][j] !== true)
                     table.push("<td class='empty'></td>");
                 else
-                    table.push("<td class='car car1'></td>");
+                    table.push("<td class='car car4'></td>");
             }
             table.push("</tr>");
         }
@@ -124,42 +165,46 @@
     }
 
     /* bulletin内生成代码模版
-    <table class="table table-hover">
-    <thead>
-        <tr>
-            <th colspan="4">名称：
-                <span></span>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="col-md-2">结构型式：</td>
-            <td class="col-md-4"></td>
-            <td class="col-md-2">营业时间：</td>
-            <td class="col-md-4"></td>
-        </tr>
-        <tr>
-            <td>服务对象：</td>
-            <td></td>
-            <td>主要设施：</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>车位总数：</td>
-            <td></td>
-            <td>剩余车位数：</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>收费标准：</td>
-            <td></td>
-            <td>地址：</td>
-            <td></td>
-        </tr>
-    </tbody>
-    </table>
+        <table class="table table-hover">
+        <thead>
+            <tr>
+                <th colspan="4">名称：
+                    <span></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-md-2">结构型式：</td>
+                <td class="col-md-4"></td>
+                <td class="col-md-2">营业时间：</td>
+                <td class="col-md-4"></td>
+            </tr>
+            <tr>
+                <td>服务对象：</td>
+                <td></td>
+                <td>主要设施：</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>车位总数：</td>
+                <td></td>
+                <td>剩余车位数：</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>收费标准：</td>
+                <td></td>
+                <td>地址：</td>
+                <td></td>
+            </tr>
+        </tbody>
+        </table>
     */
+    /**
+     *
+     * @param {JSONObject} parkinglot
+     */
     function setBulletin(parkinglot) {
         // 设置bulletin
         var bulletin = [];
@@ -186,86 +231,12 @@
         $("#bulletin").html(bulletin.join(''));
     }
 
-    function LoadData(url) {
-        if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlHttpRequest = new XMLHttpRequest();
-        } else { // code for IE6, IE5
-            xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlHttpRequest.onreadystatechange = function () {
-            if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-                document.getElementById("hello ").innerHTML = xmlHttpRequest.responseText;
-            }
-        };
-
-        xmlHttpRequest.open("GET ", url, true);
-        xmlHttpRequest.send();
-    }
-
-    function selectLot(value) {
-        var tablelot = document.getElementById("tablelot");
-        if (value <= 0) {
-            return;
-        }
-
-        if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlHttpRequest = new XMLHttpRequest();
-        } else { // code for IE6, IE5
-            xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlHttpRequest.onreadystatechange = function () {
-            if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
-                var xmlDoc = xmlHttpRequest.responseXML,
-                    layoutTag = xmlDoc.getElementsByTagName("layout"),
-                    cols = xmlDoc.getElementsByTagName("layout ")[0].getElementsByTagName("cols")[0].firstChild.nodeValue,
-                    rows = xmlDoc.getElementsByTagName("layout ")[0].getElementsByTagName("rows")[0].firstChild.nodeValue,
-                    table = document.createElement("table"),
-                    tbody = document.createElement("tbody");
-                for (var i = 0; i < rows; i++) {
-                    var tr = document.createElement("tr");
-                    for (var j = 0; j < cols; j++) {
-                        var td = document.createElement("td");
-
-                        var txt = getRandomStatus();
-                        if (txt === "busy") {
-                            td.className = "car car" + getRandomCar(12);
-                        } else {
-                            td.className = "empty";
-                        }
-                        //td.appendChild(document.createTextNode(txt));
-                        tr.appendChild(td);
-                    }
-                    tbody.appendChild(tr);
-                }
-                table.appendChild(tbody);
-                table.className = "table table-striped table-bordered table-hover";
-                tablelot.innerHTML = "";
-                var divTag = document.createElement("div");
-                divTag.className = "table-responsive ";
-                divTag.appendChild(table);
-                tablelot.appendChild(divTag);
-            }
-        };
-
-        // 提取停车场号码
-        //var lotnum = value.substr(3);
-
-        xmlHttpRequest.open("GET", "layout/layout_yyyplot.xml", true);
-        xmlHttpRequest.send();
-    }
-
-    function getRandomCar(scope) {
-        return Math.ceil(Math.random() * 10000) % scope + 1;
-    }
-
-    function getRandomStatus() {
-        return Math.ceil(Math.random() * 1000) % 2 === 0 ? "empty" : "busy";
-    }
-
-    /*
-        ParkingSpot类型
-    */
+    /**
+     *
+     * @param {String} pfx
+     * @param {Number} row
+     * @param {Number} col
+     */
     function ParkingSpot(pfx, row, col) {
         this.pfx = pfx;
         this.row = row;
@@ -275,7 +246,10 @@
     /* ========================================================================
      * 基于bootstrap按钮式下拉菜单的自定义的类select控件
      *
-     * ======================================================================== */
+     * ========================================================================
+     *
+     * @param {HTMLDocument} element
+     */
     function CustomDropDown(element) {
         this.dropdown = element;
         this.placeholder = this.dropdown.find(".placeholder");
