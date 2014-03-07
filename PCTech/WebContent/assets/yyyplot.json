@@ -9,31 +9,6 @@
     "latitude": 3.22,
     "longitude": 2.12,
     "name": "yyyparkinglot",
-    "parkingSpots": [
-        {
-            "id": "A1-01-04",
-            "departureTime": null,
-            "entranceTime": "2014-01-14T12:01:59",
-            "status": "1"
-    },
-        {
-            "id": "A1-02-05",
-            "departureTime": "2014-02-15T12:00:00",
-            "entranceTime": "2014-02-14T12:00:00",
-            "status": "1"
-    },
-        {
-            "id": "A1-02-03",
-            "departureTime": null,
-            "entranceTime": null,
-            "status": "1"
-    },
-        {
-            "id": "A1-03-04",
-            "departureTime": null,
-            "entranceTime": "2014-02-14T12:00:00",
-            "status": "1"
-    }],
     "remark": null,
     "spotLoaded": true,
     "spotQuantity": 200

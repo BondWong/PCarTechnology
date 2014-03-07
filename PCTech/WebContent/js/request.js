@@ -2,16 +2,17 @@
 /*global $, jQuery, console, ActiveXObject, alert*/
 
 // 自定义脚本运行在一个匿名函数内，便于文件合并
+// 本文件主要用于处理向服务器请求信息的工作
 (function () {
 
     // use strict mode
     "use strict";
 
     var xmlHttpRequest, /* http请求对象*/
-        //parkinglot_list, /* 停车场列表对象*/
         layout_cols, /* 停车场车位列数*/
         layout_rows, /* 停车场车位行数*/
-        mydropdown, layout;
+        mydropdown, /* 自定义select控件对象*/
+        layout; /* 停车场布局二维数组*/
 
     /**
      *  Html页面加载完毕后执行此函数
@@ -47,7 +48,7 @@
             // 利用array的join合成html代码后，插入到网页中
             $("#parkinglot-list").html(parkinglot_list.join(''));
 
-            // 创建实例
+            // 创建select控件实例
             mydropdown = new CustomDropDown($("#select-dropdown-menu-1"));
 
         }).fail(function () {
@@ -82,17 +83,6 @@
         return $.getJSON(url).done(function (data) {
             // 设置公告板的表格
             setBulletin(data);
-
-
-            data.parkingSpots.forEach(function (value, index) {
-                var reg = /(\w+\d+)-(\d+)-(\d+)/g,
-                    result = reg.exec(value.id),
-                    row = parseInt(result[2]),
-                    col = parseInt(result[3]);
-                layout[row][col] = true;
-            });
-
-            setTableLot();
         }).fail(function () {
             console.log("getParkinglot error");
         });
@@ -105,6 +95,14 @@
     function getParkingSpots(url) {
         return $.getJSON(url).done(function (data) {
 
+            data.forEach(function (value, index) {
+                var reg = /(\w+\d+)-(\d+)-(\d+)/g,
+                    result = reg.exec(value.id),
+                    row = parseInt(result[2]),
+                    col = parseInt(result[3]);
+                layout[row][col] = true;
+            });
+            setTableLot();
         }).fail(function () {
             console.log("getParkingSpots error");
         });
@@ -124,7 +122,8 @@
      */
     function onParkinglotSelected(lotname) {
         getLayout("layout/layout_" + lotname + ".xml")
-            .then(getParkinglot("assets/" + lotname + ".json"));
+            .then(getParkinglot("assets/" + lotname + ".json"))
+            .then(getParkingSpots("assets/psInfo_" + lotname + ".json"));
     }
 
     /**
@@ -144,7 +143,7 @@
      *      </table>
      *  </div>
      *
-     *
+     *  动态生成停车场车辆分布表格
      */
     function setTableLot() {
         // 设置tablelot
@@ -164,7 +163,7 @@
         $("#tablelot").html(table.join(''));
     }
 
-    /* bulletin内生成代码模版
+    /* bulletin内html代码模版
         <table class="table table-hover">
         <thead>
             <tr>
@@ -202,7 +201,7 @@
         </table>
     */
     /**
-     *
+     *  动态生成公告板html代码
      * @param {JSONObject} parkinglot
      */
     function setBulletin(parkinglot) {
@@ -221,7 +220,7 @@
         bulletin.push("</td></tr><tr><td>车位总数：</td><td>");
         bulletin.push(parkinglot.spotQuantity);
         bulletin.push("</td><td>剩余车位数：</td><td>");
-        bulletin.push(parkinglot.spotQuantity - parkinglot.parkingSpots.length);
+        bulletin.push(parkinglot.spotQuantity);
         bulletin.push("</td></tr><tr><td>收费标准：</td><td>");
         bulletin.push(parkinglot.fee);
         bulletin.push("</td><td>地址：</td><td>");
