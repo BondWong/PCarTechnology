@@ -1,43 +1,58 @@
 body {
     font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", sans-serif;
-    padding-top: 50px;
-    padding-bottom: 20px;
 }
 .pc-nav {
     font-size: 16px;
 }
+/*jumbotron*/
+
+.jumbotron {
+    margin-top: 50px;
+}
 .jumbotron th {
     font-size: 1.8em;
 }
+/*main content css*/
+
+.maincontent {
+    margin-bottom: 50px;
+}
+.maincontent td {
+    height: 75px;
+    min-height: 75px;
+    min-width: 45px;
+    /*vertical-align: middle !important;*/
+    text-align: center;
+}
+.parkingspot {
+    height: 100%;
+    width: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.empty {
+    background-image: url(../assets/cars/empty.png);
+}
+.car {
+    background-image: url(../assets/cars/car4.png);
+}
+/* popup barble*/
+
+.popup-info {
+    display: none;
+    text-align: center;
+    position: fixed;
+    bottom: 50px;
+}
+/* footer css */
+
 .row-fluid {
     display: table-cell;
     vertical-align: middle;
 }
 .vertical-center {
     margin: 0 auto;
-}
-.maincontent {
-    height: 800px;
-    padding-bottom: 50px;
-}
-.select {
-    padding-bottom: 20px;
-}
-.maincontent td {
-    height: 75px;
-    vertical-align: middle !important;
-    text-align: center;
-}
-.car {
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.empty {
-    height: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url(../assets/cars/empty.png);
 }
 footer {
     position: fixed;
@@ -50,40 +65,4 @@ footer {
 footer .container {
     height: 100%;
     display: table;
-}
-.car1 {
-    background-image: url(../assets/cars/car1.png);
-}
-.car2 {
-    background-image: url(../assets/cars/car2.png);
-}
-.car3 {
-    background-image: url(../assets/cars/car3.png);
-}
-.car4 {
-    background-image: url(../assets/cars/car4.png);
-}
-.car5 {
-    background-image: url(../assets/cars/car5.png);
-}
-.car6 {
-    background-image: url(../assets/cars/car6.png);
-}
-.car7 {
-    background-image: url(../assets/cars/car7.png);
-}
-.car8 {
-    background-image: url(../assets/cars/car8.png);
-}
-.car9 {
-    background-image: url(../assets/cars/car9.png);
-}
-.car10 {
-    background-image: url(../assets/cars/car10.png);
-}
-.car11 {
-    background-image: url(../assets/cars/car11.png);
-}
-.car12 {
-    background-image: url(../assets/cars/car12.png);
 }

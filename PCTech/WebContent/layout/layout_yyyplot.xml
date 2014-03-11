@@ -2,6 +2,6 @@
 <layout>
     <name>parkinglot_2</name>
     <size>42</size>
-    <rows>6</rows>
-    <cols>7</cols>
+    <rows>5</rows>
+    <cols>10</cols>
 </layout>
