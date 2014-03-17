@@ -38,15 +38,16 @@ public class ParkingLotDataController extends ActionSupport implements SessionAw
 			return "error";
 		}
 		
-		boolean isSpotLoaded = false;
+		//boolean isSpotLoaded = false;
 		selectedParkingLot = pls.getParkingLot(parkingLotName);
-		isSpotLoaded = selectedParkingLot.isSpotLoaded();
+		
+		/*isSpotLoaded = selectedParkingLot.isSpotLoaded();
 		if(!isSpotLoaded){
 			selectedParkingLot.load();
 			pls.saveParkingLot(selectedParkingLot);
 			httpSession.remove("parkingLots");
 			httpSession.put("parkingLots",pls);
-		}
+		}*/
 		
 		selectedParkingSpots = selectedParkingLot.fetchTakenParkingSpots();
 		System.out.println(selectedParkingLot);

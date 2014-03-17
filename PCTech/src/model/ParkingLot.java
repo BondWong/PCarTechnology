@@ -114,12 +114,12 @@ public class ParkingLot {
 		return getName().hashCode();
 	}
 	
-	public boolean isSpotLoaded(){
+	/*public boolean isSpotLoaded(){
 		if(parkingSpots==null||parkingSpots.isEmpty())
 			return false;
 		else
 			return true;
-	}
+	}*/
 	
 	public void load(){
 		parkingLotDAO = ParkingLotDAO.createInstance();
@@ -129,6 +129,7 @@ public class ParkingLot {
 	}
 	
 	public Set<ParkingSpot> fetchTakenParkingSpots(){
+		load();
 		Set<ParkingSpot> takenParkingSpots = new HashSet<ParkingSpot>();
 		for(ParkingSpot ps : parkingSpots){
 			if(ps.getStatus().equals("1"))
