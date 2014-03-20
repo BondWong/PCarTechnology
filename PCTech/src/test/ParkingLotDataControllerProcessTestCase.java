@@ -3,9 +3,9 @@ package test;
 import java.util.HashMap;
 import java.util.Map;
 
+import controller.ParkingLotDataController;
 import model.ParkingLot;
 import model.ParkingLots;
-import controller.ParkingLotDataController;
 import junit.framework.TestCase;
 
 public class ParkingLotDataControllerProcessTestCase extends TestCase{

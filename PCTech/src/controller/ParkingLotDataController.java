@@ -28,7 +28,7 @@ public class ParkingLotDataController extends ActionSupport implements SessionAw
 	private Map<String,Object> httpSession;
 	
 	public String execute() throws Exception{
-		System.out.println(requestDataType+" "+parkingLotName);
+		System.out.println("hello "+requestDataType+" "+parkingLotName);
 		
 		boolean isInSession = false;
 		ParkingLots pls = (ParkingLots)httpSession.get("parkingLots");

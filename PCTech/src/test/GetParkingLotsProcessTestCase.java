@@ -3,8 +3,8 @@ package test;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.ParkingLots;
 import controller.GetParkingLotsController;
+import model.ParkingLots;
 import junit.framework.TestCase;
 
 public class GetParkingLotsProcessTestCase extends TestCase{
