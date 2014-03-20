@@ -22,6 +22,7 @@ public class ParkingLotDAO {
 	private void connectToDataSource(String parkingLotId){
 		applicationContext = new ClassPathXmlApplicationContext("remote-datasource.xml");
 		DataSource dataSource = (DataSource) applicationContext.getBean(parkingLotId);
+		System.out.println(dataSource);
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	

@@ -131,6 +131,7 @@ public class ParkingLot {
 	public Set<ParkingSpot> fetchTakenParkingSpots(){
 		load();
 		Set<ParkingSpot> takenParkingSpots = new HashSet<ParkingSpot>();
+		
 		for(ParkingSpot ps : parkingSpots){
 			if(ps.getStatus().equals("1"))
 				takenParkingSpots.add(ps);
