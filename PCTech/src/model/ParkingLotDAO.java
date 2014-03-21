@@ -11,18 +11,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class ParkingLotDAO {
-	private ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext;
 	private JdbcTemplate jdbcTemplate;
 	private static final String SQL = "select * from parkingspot";
+	
+	static {
+		applicationContext = new ClassPathXmlApplicationContext("remote-datasource.xml");
+	}
 	
 	public static ParkingLotDAO createInstance(){
 		return new ParkingLotDAO();
 	}
 	
 	private void connectToDataSource(String parkingLotId){
-		applicationContext = new ClassPathXmlApplicationContext("remote-datasource.xml");
 		DataSource dataSource = (DataSource) applicationContext.getBean(parkingLotId);
-		System.out.println(dataSource);
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
@@ -55,10 +57,6 @@ public class ParkingLotDAO {
 			ps.setDepartureTime((Date)data.get("departuretime"));
 			parkingSpots.add(ps);
 		}
-	}
-	
-	public void setApplicationContext(ApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
 	}
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
