@@ -20,7 +20,7 @@
      */
     $(document).ready(function () {
 
-        getLotList("assets/parkinglot_list.json");
+        getLotList("getParkingLots");
 
     });
 
@@ -125,8 +125,8 @@
             lastlotname = lotname;
         }
         getLayout("layout/layout_" + lotname + ".xml")
-            .then(getParkinglot("assets/" + lotname + ".json"))
-            .then(getParkingSpots("assets/psInfo_" + lotname + ".json"));
+            .then(getParkinglot("getParkingLotData?requestDataType=parkingSpotInfo&parkingLotName=" + lotname))
+            .then(getParkingSpots("getParkingLotData?requestDataType=parkingLotInfo&parkingLotName=" + lotname));
         refreshContent(lotname);
     }
 
@@ -136,7 +136,7 @@
         clearInterval(interval);
         // 设置周期性更新页面内容
         interval = setInterval(function () {
-            getParkingSpots("assets/psInfo_" + lotname + ".json");
+            getParkingSpots("getParkingLotData?requestDataType=parkingLotInfo&parkingLotName=" + lotname);
 
             $("#popup-info").css("display", "inherit");
             setTimeout(function () {
