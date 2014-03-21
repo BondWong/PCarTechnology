@@ -19,7 +19,7 @@
      *  Html页面加载完毕后执行此函数
      */
     $(document).ready(function () {
-
+        //getLotList("assets/parkinglot_list.json");
         getLotList("getParkingLots");
 
     });
@@ -95,6 +95,11 @@
      */
     function getParkingSpots(url) {
         return $.getJSON(url).done(function (data) {
+            // 创建二维数组，作为停车场布局的标识 等同于 清空数组
+            layout = new Array(layout_rows);
+            for (var i = 0; i < layout.length; i++) {
+                layout[i] = new Array(layout_cols);
+            }
             data.forEach(function (value, index) {
                 var reg = /(\w+\d+)-(\d+)-(\d+)/g,
                     result = reg.exec(value.id),
@@ -125,8 +130,11 @@
             lastlotname = lotname;
         }
         getLayout("layout/layout_" + lotname + ".xml")
-            .then(getParkinglot("getParkingLotData?requestDataType=parkingSpotInfo&parkingLotName=" + lotname))
-            .then(getParkingSpots("getParkingLotData?requestDataType=parkingLotInfo&parkingLotName=" + lotname));
+        /* .then(getParkinglot("assets/" + lotname + ".json"))
+            .then(getParkingSpots("assets/psInfo_" + lotname + ".json"));*/
+
+        .then(getParkinglot("getParkingLotData?requestDataType=parkingLotInfo&parkingLotName=" + lotname))
+            .then(getParkingSpots("getParkingLotData?requestDataType=parkingSpotInfo&parkingLotName=" + lotname));
         refreshContent(lotname);
     }
 
@@ -136,7 +144,8 @@
         clearInterval(interval);
         // 设置周期性更新页面内容
         interval = setInterval(function () {
-            getParkingSpots("getParkingLotData?requestDataType=parkingLotInfo&parkingLotName=" + lotname);
+            //            getParkingSpots("assets/psInfo_" + lotname + ".json");
+            getParkingSpots("getParkingLotData?requestDataType=parkingSpotInfo&parkingLotName=" + lotname);
 
             $("#popup-info").css("display", "inherit");
             setTimeout(function () {
