@@ -10,16 +10,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 
 public class ParkingLotsDAO{
-	private ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext;
 	private JdbcTemplate jdbcTemplate;
 	private static final String SQL = "select * from parkinglots";
+	
+	static {
+		applicationContext = new ClassPathXmlApplicationContext("local-datasource.xml");
+	}
 	
 	public static ParkingLotsDAO createInstance(){
 		return new ParkingLotsDAO();
 	}
 	
 	private void connectToDataSource(){
-		applicationContext = new ClassPathXmlApplicationContext("local-datasource.xml");
 		DataSource dataSource = (DataSource) applicationContext.getBean("parkingLots");
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -37,10 +40,6 @@ public class ParkingLotsDAO{
 
 	public ApplicationContext getApplicationContext() {
 		return applicationContext;
-	}
-
-	public void setApplicationContext(ApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
 	}
 
 	public JdbcTemplate getJdbcTemplate() {
