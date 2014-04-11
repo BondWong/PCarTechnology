@@ -21,7 +21,6 @@
     $(document).ready(function () {
         //getLotList("assets/parkinglot_list.json");
         getLotList("getParkingLots");
-
     });
 
     /*
