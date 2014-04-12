@@ -14,10 +14,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
 
-    <!--    <link href="css/reset.css" rel="stylesheet" media="screen">-->
-    <!--    <link href="css/common.css" rel="stylesheet" media="screen">-->
-    <link href="css/smallslider.css" rel="stylesheet" media="screen">
-
     <link href="css/custom.css" rel="stylesheet" media="screen">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -60,39 +56,115 @@
     </header>
 
     <!--图片轮播-->
-    <div class="banner">
-        <div id="flashbox" class="img_rotating smallslider">
-            <ul>
-                <li>
-                    <a>
-                        <img class="img-responsive" src="img/banner_61.jpg" />
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <img class="img-responsive" src="img/banner_21.jpg" />
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <img class="img-responsive" src="img/banner_31.jpg" />
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <img class="img-responsive" src="img/banner_51.jpg" />
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <img class="img-responsive" src="img/banner_41.jpg" />
-                    </a>
-                </li>
-            </ul>
+    <div id="carousel-plot" class="carousel slide carousel-plot carousel-fade" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-plot" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-plot" data-slide-to="1"></li>
+            <li data-target="#carousel-plot" data-slide-to="2"></li>
+            <li data-target="#carousel-plot" data-slide-to="3"></li>
+            <li data-target="#carousel-plot" data-slide-to="4"></li>
+            <li data-target="#carousel-plot" data-slide-to="5"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img class="img-responsive" src="img/lot1.png" alt="...">
+                <div class="carousel-caption">
+
+                </div>
+            </div>
+            <div class="item">
+                <img class="img-responsive" src="img/lot2.png" alt="...">
+                <div class="carousel-caption">
+
+                </div>
+            </div>
+            <div class="item">
+                <img class="img-responsive" src="img/lot3.png" alt="...">
+                <div class="carousel-caption">
+
+                </div>
+            </div>
+            <div class="item">
+                <img class="img-responsive" src="img/lot4.png" alt="...">
+                <div class="carousel-caption">
+
+                </div>
+            </div>
+            <div class="item">
+                <img class="img-responsive" src="img/lot5.png" alt="...">
+                <div class="carousel-caption">
+
+                </div>
+            </div>
+            <div class="item">
+                <img class="img-responsive" src="img/lot6.png" alt="...">
+                <div class="carousel-caption">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <!--
+        <a class="left carousel-control" href="#carousel-plot" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+</a>
+<a class="right carousel-control" href="#carousel-plot" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+</a>
+-->
+    </div>
+
+    <div class="maincontent container">
+        <h1 class="p-h1">停车场实时车位引导系统</h1>
+        <h2 class="p-h2">
+            三大亮点
+            <span>·</span>
+            跨越平台
+            <span>·</span>
+            实时生活
+        </h2>
+        <h3 class="p-h3">值得你拥有！</h3>
+
+        <div class="lightspot col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+            <div class="info col-md-7 col-sm-7">
+                <h2>亮点一</h2>
+                <p>提供各大加盟停车场的详细营业信息
+                    <br/>何时何地（珠海市范围内）您都能找到您最需要而且最合适您的停车场</p>
+            </div>
+            <img class="infoimg col-md-5 col-sm-5 img-responsive" src="holder.js/500x300" />
+
+        </div>
+        <div class="lightspot col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+            <div class="info col-md-7 col-sm-7 ">
+                <h2>亮点二</h2>
+                <p>实时展示各大加盟停车场的车位分布情况
+                    <br/>最大限度助你找到停车位</p>
+            </div>
+            <img class="infoimg col-md-5 col-sm-5 img-responsive" src="holder.js/500x300" />
+
+        </div>
+        <div class="lightspot col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+            <div class="info col-md-7 col-sm-7 ">
+                <h2>亮点三</h2>
+                <p>免费查询各大加盟停车场的各种时段车位使用趋势以及相应停车场的详细参数
+                    <br/>为你提供详实依据以作出最佳选择</p>
+            </div>
+            <img class="infoimg  col-md-5 col-sm-5 img-responsive" src="holder.js/500x300" />
+
         </div>
     </div>
 
-
+    <footer id="footer">
+        <div class="container">
+            <div class="row-fluid">
+                <p class="copyright vertical-center">© Saint Scott 2014.</p>
+            </div>
+        </div>
+    </footer>
     <!-- Bootstrap core JavaScript
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -101,7 +173,7 @@
 -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.smallslider.js"></script>
+    <script src="js/holder.js"></script>
     <script src="js/main.js"></script>
 
 </body>
