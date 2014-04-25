@@ -13,7 +13,7 @@
         layout_rows, /* 停车场车位行数*/
         mydropdown, /* 自定义select控件对象*/
         parkinglot, /* 停车场对象*/
-        layout /* 停车场布局二维数组*/ ;
+        layout; /* 停车场布局二维数组*/
 
     /**
      *  Html页面加载完毕后执行此函数
@@ -66,7 +66,7 @@
             layout_cols = parseInt($(data).find('cols').text());
 
             // 创建二维数组，作为停车场布局的标识
-            layout = new Array(layout_rows);
+            layout = new Array[layout_rows]();
             for (var i = 0; i < layout.length; i++) {
                 layout[i] = new Array(layout_cols);
             }

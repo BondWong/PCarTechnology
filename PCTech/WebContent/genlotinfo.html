@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="何炬江">
+
+    <title>Template</title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+
+    <link href="css/custom.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="css/fileupload.css">
+    <link rel="stylesheet" href="css/docs.css">
+    <link rel="stylesheet" href="css/cropper.min.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-default navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Parking</a>
+            </div>
+            <nav class="collapse navbar-collapse pc-nav" role="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="home.html">Location Generation</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="maincontent container">
+        <div class="col-lg-10 col-lg-offset-1">
+            <span class="btn btn-success fileinput-button">
+                <i class="glyphicon glyphicon-upload"></i>
+                <span>Add files...</span>
+                <input id="file" type="file" name="file" accept="image/jpeg,image/png">
+            </span>
+            <span class="opbtn upload">
+                <button id="cropper-enable" type="button" class="btn btn-success">Enable</button>
+                <button id="cropper-disable" type="button" class="btn btn-danger">Disable</button>
+            </span>
+        </div>
+
+        <div class="imgbox container col-lg-12">
+            <div id="infoform" class="infoform upload">
+                <form class="form-horizontal" role="form">
+                    <label for="dataX1" class="col-xs-6 col-sm-3 col-md-1 control-label">X1:</label>
+                    <div class="col-xs-6 col-sm-3 col-md-1">
+                        <input type="text" class="form-control" id="dataX1" placeholder="x1">
+                    </div>
+
+                    <label for="dataY1" class="col-xs-6 col-sm-3 col-md-1 control-label">Y1:</label>
+                    <div class="col-xs-6 col-sm-3 col-md-1">
+                        <input type="text" class="form-control" id="dataY1" placeholder="y1">
+                    </div>
+
+                    <label for="dataX2" class="col-xs-6 col-sm-3 col-md-1 control-label">X2:</label>
+                    <div class="col-xs-6 col-sm-3 col-md-1">
+                        <input type="text" class="form-control" id="dataX2" placeholder="x2">
+                    </div>
+
+                    <label for="dataY2" class="col-xs-6 col-sm-3 col-md-1 control-label">Y2:</label>
+                    <div class="col-xs-6 col-sm-3 col-md-1">
+                        <input type="text" class="form-control" id="dataY2" placeholder="y2">
+                    </div>
+
+                    <label for="dataWidth" class="col-xs-6 col-sm-3 col-md-1 control-label">Width:</label>
+                    <div class="col-xs-6 col-sm-3 col-md-1">
+                        <input type="text" class="form-control" id="dataWidth" placeholder="width">
+                    </div>
+
+                    <label for="dataHeight" class="col-xs-6 col-sm-3 col-md-1 control-label">Height:</label>
+                    <div class="col-xs-6 col-sm-3 col-md-1">
+                        <input type="text" class="form-control" id="dataHeight" placeholder="height">
+                    </div>
+                </form>
+            </div>
+            <div class="container cropcon upload">
+                <img id="imgcrop" class="cropper imgcrop" src="" alt="" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="table-responsive">
+            <table id="infotable" class="upload table table-striped table-bordered">
+                <tr>
+                    <th>#</th>
+                    <th>X1</th>
+                    <th>Y1</th>
+                    <th>X2</th>
+                    <th>Y2</th>
+                    <th>Width</th>
+                    <th>Height</th>
+                    <th>Orientation</th>
+                    <th class="text-center">
+                        <button id="add" type="button" class="btn btn-primary btn-long btn-lg">Add</button>
+                    </th>
+                </tr>
+            </table>
+            <form id="genform" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="filename" class="col-md-3 control-label gentext">Please input the filename:</label>
+                    <div class="col-md-6">
+                        <input id="filename" class="form-control gentext" size="25" maxlength="50" name="filename" type="text" placeholder="filename" />
+                    </div>
+                    <div class="col-md-3">
+                        <button id="generate" type="button" class="btn btn-success btn-long">Generate</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer id="footer" class="fix-footer buttom">
+        <div class="container">
+            <div class="row-fluid">
+                <p class="copyright vertical-center">© Saint Scott 2014.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--    <script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>-->
+    <!--<script src="//cdn.bootcss.com/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+-->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/holder.js"></script>
+    <script src="js/cropper.min.js"></script>
+    <script src="js/genlotinfo.js"></script>
+</body>
+
+</html>

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="何炬江">
 
-    <title>New Home Page</title>
+    <title>Query Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -61,31 +61,32 @@
                 <h2 class="form-text col-sm-5 col-md-5 col-lg-6">请选择停车场：</h2>
                 <div class="form-group  col-xs-12 col-sm-7 col-md-7 col-lg-6">
                     <select class="form-control form-select" name="city" id="city">
-                        <option>珠海市</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="zhuhai">珠海市</option>
+
                     </select>
                     <select class="form-control form-select" name="township" id="township">
-                        <option>香洲区</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="xiangzhou">香洲区</option>
+                        <option value="doumen">斗门区</option>
+                        <option value="jinwan">金湾区</option>
+                        <option value="hengqin">横琴新区</option>
                     </select>
                     <select class="form-control form-select" name="town" id="town">
-                        <option>前山镇</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option value="qianshan">前山</option>
+                        <option value="gongbei">拱北</option>
+                        <option value="jida">吉大</option>
+                        <option value="cuixiang">翠香</option>
+                        <option value="shishan">狮山</option>
+                        <option value="xiangwan">香湾</option>
+                        <option value="meihua">梅华</option>
+                        <option value="wanzai">湾仔</option>
+                        <option value="nanping">南屏镇</option>
                     </select>
                 </div>
             </form>
         </div>
 
-        <div class="lotpic container col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+        <div id="lottable" class="lotpic container col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+            <a class="blockpic" href="#">***停车场</a>
             <a class="blockpic" href="#">***停车场</a>
             <a class="blockpic" href="#">***停车场</a>
             <a class="blockpic" href="#">***停车场</a>
@@ -100,12 +101,11 @@
             <a class="blockpic" href="#">***停车场</a>
             <a class="blockpic" href="#">***停车场</a>
             <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
         </div>
 
         <div class="clearfix"></div>
 
-        <div class="lotinfo col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+        <div id="lotinfotable" class="lotinfo col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
             <h1>南京1912停车场</h1>
             <div class="lot-table container-fluid">
 
@@ -154,7 +154,7 @@
 
         <div class="clearfix"></div>
 
-        <div class="rtinfo col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 container">
+        <div id="realtimelot" class="rtinfo col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 container">
             <h1>实时车位分布</h1>
             <div class="lotmap">
                 <img class=" lotimg" src="holder.js/1000x400" alt="..." />
@@ -163,7 +163,7 @@
 
         <div class="clearfix"></div>
 
-        <div class="analysis col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 container">
+        <div id="analysis" class="analysis col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 container">
             <h1>趋势图及详细分析参数</h1>
             <div class="charts">
                 <div id="linechart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -171,7 +171,7 @@
         </div>
     </div>
 
-    <footer id="footer">
+    <footer id="footer" class="fix-footer">
         <div class="container">
             <div class="row-fluid">
                 <p class="copyright vertical-center">© Saint Scott 2014.</p>
@@ -188,8 +188,8 @@
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/holder.js"></script>
-    <script src="js/highcharts.js"></script>
-    <script src="js/modules/exporting.js"></script>
+    <script src="js/highcharts/highcharts.js"></script>
+    <script src="js/highcharts/modules/exporting.js"></script>
     <script src="js/main.js"></script>
 </body>
 

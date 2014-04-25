@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+/*
+ * jQuery File Upload Plugin CSS 1.3.0
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2013, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+.infoform {
+    text-align: left;
+    margin: 20px auto;
+    height: 100%;
+}
+.infoform form {
+    text-align: left;
+    margin: 20px auto;
+    height: 100%;
+    padding-bottom: 20px;
+}
+.infoform lable {
+    text-align: left;
+    font-size: 1.3em;
+}
+.imgbox {
+    margin: auto 0;
+    padding: 0;
+}
+.cropcon {
+    width: auto;
+    margin: 20px auto;
+    overflow: auto;
+}
+.imgcrop {
+    border: 0;
+    -webkit-box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+    box-shadow: 0px 2px 7px 0px rgba(0, 0, 0, .27);
+    margin: 20px auto;
+}
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+    margin: 30px auto;
+}
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px;
+    direction: ltr;
+    cursor: pointer;
+}
+.opbtn {
+    margin: 30px auto;
+    float: right;
+}
+#infotable {
+    font-size: 1.3em;
+    display: grid;
+}
+#infotable th,
+#infotable td {
+    vertical-align: middle;
+}
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: #ededed;
+}
+.gentext {
+    font-size: 1.2em;
+}
+.input-lg {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.popover {
+    font-size: 15px;
+    color: #ce3d3d;
+    border-radius: 0px;
+}
+/* Fixes for IE < 8 */
+
+@media screen\9 {
+    .fileinput-button input {
+        filter: alpha(opacity=0);
+        font-size: 100%;
+        height: 100%;
+    }
+}
