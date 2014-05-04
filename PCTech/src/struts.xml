@@ -38,5 +38,20 @@
 			
 		</action>
 		
+		<action name="getSpotsInfoFile" class="controller.GetSpotInfoFileController">
+			<result type="json">
+				<param name="root">
+					selectedFile
+				</param>
+			</result>
+			
+			<result type="json" name="error">
+				<param name="root">
+					errorMessage
+				</param>
+			</result>
+			
+		</action>
+		
 	</package>
 </struts>

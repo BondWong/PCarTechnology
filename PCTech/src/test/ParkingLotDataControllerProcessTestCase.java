@@ -21,7 +21,7 @@ public class ParkingLotDataControllerProcessTestCase extends TestCase{
 		parameters.put("requestDataType",new String[]{"parkingLotInfo"});
 		splc.setSession(session);
 		splc.setRequestDataType("parkingLotInfo");
-		splc.setParkingLotName("xxxparkinglot");
+		splc.setParkingLotID("1");
 	}
 	
 	public void testSelectParkingLotProcess1() throws Exception{

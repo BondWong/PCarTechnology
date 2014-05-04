@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ParkingLot {
+	private String ID;
 	private String name;
 	private String address;
 	private Date joinTime;
@@ -20,6 +21,14 @@ public class ParkingLot {
 	private Set<ParkingSpot> parkingSpots;
 	//private Map<String,ParkingSpot> parkingSpots;
 	private ParkingLotDAO parkingLotDAO;
+	
+	public String getID(){
+		return ID;
+	}
+	
+	public void setID(String ID){
+		this.ID = ID;
+	}
 	
 	public String getName() {
 		return name;

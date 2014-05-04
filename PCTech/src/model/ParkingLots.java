@@ -22,8 +22,8 @@ public class ParkingLots {
 		this.parkingLotsDAO = parkingLotsDAO;
 	}
 	
-	public ParkingLot getParkingLot(String parkingLotId){
-		return parkingLots.get(parkingLotId);
+	public ParkingLot getParkingLot(String parkingLotID){
+		return parkingLots.get(parkingLotID);
 	}
 	
 	public void load(){
@@ -37,6 +37,7 @@ public class ParkingLots {
 		for(Map<String,Object> data : results){
 			ParkingLot pl = new ParkingLot();
 			
+			pl.setID((String) data.get("ID"));
 			pl.setAddress((String) data.get("address"));
 			pl.setArchitecture((String) data.get("architecture"));
 			pl.setBusinessHours((String)data.get("businessHours"));
@@ -50,7 +51,7 @@ public class ParkingLots {
 			pl.setRemark((String)data.get("remark"));
 			pl.setSpotQuantity((Integer)data.get("spotquantity"));
 			
-			parkingLots.put(pl.getName(),pl);
+			parkingLots.put(pl.getID(),pl);
 		}
 	}
 	

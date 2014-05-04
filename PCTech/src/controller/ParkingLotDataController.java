@@ -19,7 +19,7 @@ public class ParkingLotDataController extends ActionSupport implements SessionAw
 	private static final long serialVersionUID = -4605961100140558084L;
 	
 	private String requestDataType;
-	private String parkingLotName;
+	private String parkingLotID;
 	
 	private ParkingLot selectedParkingLot;
 	private Set<ParkingSpot> selectedParkingSpots;
@@ -28,7 +28,7 @@ public class ParkingLotDataController extends ActionSupport implements SessionAw
 	private Map<String,Object> httpSession;
 	
 	public String execute() throws Exception{
-		System.out.println("hello "+requestDataType+" "+parkingLotName);
+		System.out.println("hello "+requestDataType+" "+parkingLotID);
 		
 		boolean isInSession = false;
 		ParkingLots pls = (ParkingLots)httpSession.get("parkingLots");
@@ -39,7 +39,7 @@ public class ParkingLotDataController extends ActionSupport implements SessionAw
 		}
 		
 		//boolean isSpotLoaded = false;
-		selectedParkingLot = pls.getParkingLot(parkingLotName);
+		selectedParkingLot = pls.getParkingLot(parkingLotID);
 		
 		/*isSpotLoaded = selectedParkingLot.isSpotLoaded();
 		if(!isSpotLoaded){
@@ -60,8 +60,8 @@ public class ParkingLotDataController extends ActionSupport implements SessionAw
 		this.requestDataType = requestDataType;
 	}
 	
-	public void setParkingLotName(String parkingLotName){
-		this.parkingLotName = parkingLotName;
+	public void setParkingLotID(String parkingLotID){
+		this.parkingLotID = parkingLotID;
 	}
 	
 	@Override

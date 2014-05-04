@@ -1,8 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
+import model.ParkingLot;
 import model.ParkingLots;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -17,7 +21,7 @@ public class GetParkingLotsController extends ActionSupport implements SessionAw
 	private static final long serialVersionUID = -8309384711637576320L;
 	
 	private ParkingLots parkingLots;
-	private Set<String> necessaryData;
+	private Set<List<String>> necessaryData;
 	
 	private Map<String,Object> httpSession;
 	
@@ -38,12 +42,18 @@ public class GetParkingLotsController extends ActionSupport implements SessionAw
 			httpSession.put("parkingLots",parkingLots);
 		}
 		
-		necessaryData = parkingLots.getParkingLots().keySet();
+		Map<String, ParkingLot> temp = parkingLots.getParkingLots();
+		for(Entry<String, ParkingLot> entry : temp.entrySet()){
+			List<String> t = new ArrayList<String>();
+			t.add(entry.getKey());
+			t.add(entry.getValue().getName());
+			necessaryData.add(t);
+		}
 		
 		return "success";
 	}
 
-	public Set<String> getNecessaryData() {
+	public Set<List<String>> getNecessaryData() {
 		return necessaryData;
 	}
 	
