@@ -38,10 +38,10 @@
 			
 		</action>
 		
-		<action name="getSpotsInfoFile" class="controller.GetSpotInfoFileController">
+		<action name="getSpotsInfoFile" class="controller.GetSpotsInfoFileController">
 			<result type="json">
 				<param name="root">
-					selectedFile
+					selectedFileData
 				</param>
 			</result>
 			

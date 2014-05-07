@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -43,6 +44,7 @@ public class GetParkingLotsController extends ActionSupport implements SessionAw
 		}
 		
 		Map<String, ParkingLot> temp = parkingLots.getParkingLots();
+		necessaryData = new LinkedHashSet<List<String>>();
 		for(Entry<String, ParkingLot> entry : temp.entrySet()){
 			List<String> t = new ArrayList<String>();
 			t.add(entry.getKey());

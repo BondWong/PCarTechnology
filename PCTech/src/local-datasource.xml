@@ -6,7 +6,7 @@
 
 <bean id="parkingLots" class="org.apache.tomcat.jdbc.pool.DataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-    <property name="url" value="jdbc:mysql://localhost:3306/pcartech" />
+    <property name="url" value="jdbc:mysql://localhost:3306/partech" />
     <property name="username" value="root" />
     <property name="password" value="BM1003mb" />
     <property name="initialSize" value="5" />

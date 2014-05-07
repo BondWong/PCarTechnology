@@ -1,10 +1,12 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.StringReader;
+import java.io.InputStreamReader;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,18 +20,36 @@ public class GetSpotsInfoFileController extends ActionSupport implements Session
 	
 	private String parkingLotID;
 	
-	private File selectedFile;
+	private String selectedFileData;
 	private String errorMessage;
 	
 	private Map<String,Object> httpSession;
 	
 	public String execute() throws Exception{
-		selectedFile = new File(parkingLotID);
-		if(!selectedFile.exists()){
-			errorMessage = "no file founded";
-			return "error";
+		String path = getRoot()+"WEB-INF\\" + parkingLotID + "InfoFile.txt";
+		
+		selectedFileData = (String) httpSession.get(path);
+		
+		if(selectedFileData == null){
+			File selectedFile = new File(path);
+			if(!selectedFile.exists()){
+				errorMessage = "no file founded";
+				return "error";
+			}
+			
+			@SuppressWarnings("resource")
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile)));
+			StringBuffer sb = new StringBuffer();
+			String line="";
+			while((line = br.readLine())!=null){
+				sb.append(line);
+			}
+			
+			selectedFileData = sb.toString();
+			
+			httpSession.put(path, selectedFileData);
 		}
-		return "success";
+			return "success";
 	}
 	
 	public void setParkingLotID(String parkingLotID){
@@ -46,7 +66,13 @@ public class GetSpotsInfoFileController extends ActionSupport implements Session
 		return errorMessage;
 	}
 	
-	public File getSelectedFile(){
-		return selectedFile;
+	public String getSelectedFileData(){
+		return selectedFileData;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getRoot(){
+		String temp = ServletActionContext.getRequest().getRealPath("/");
+		return temp;
 	}
 }
