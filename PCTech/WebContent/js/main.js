@@ -14,8 +14,7 @@
     $(document).ready(function () {
         initialize();
         request.baseUrl = "";
-        request.lotInfoSubUrl = request.lotListSubUrl = request.spotLayoutSubUrl = request.spotInfoSubUrl = "assets/";
-
+        
         request.getLotList("lotlist").then(function () {
             $(".blockpic").click(onParkinglotSelected);
         });

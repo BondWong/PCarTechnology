@@ -12,9 +12,9 @@ var request = (function ($) {
     function LotRequest() {
         this.baseUrl = "localhost:8080/PCTech/";
         this.lotListSubUrl = "getParkingLots";
-        this.lotInfoSubUrl = "getParkingLotData？requestDataType=parkingLotInfo&parkingLotID=";
+        this.lotInfoSubUrl = "getParkingLotData?requestDataType=parkingLotInfo&parkingLotID=";
         this.spotLayoutSubUrl = "getSpotsInfoFile?parkingLotID=";
-        this.spotInfoSubUrl = "getParkingLotData？requestDataType=parkingSpotnfo&parkingLotID=";
+        this.spotInfoSubUrl = "getParkingLotData?requestDataType=parkingSpotInfo&parkingLotID=";
         this.spotPositions = [];
         this.lastLotID = null;
         this.spotsInfo = [];
@@ -23,7 +23,7 @@ var request = (function ($) {
     LotRequest.prototype = {
         getLotList: function (reqUrl) {
             var req = this;
-            return $.getJSON(req.baseUrl + req.lotListSubUrl + reqUrl).done(function (data) {
+            return $.getJSON(req.baseUrl + req.lotListSubUrl).done(function (data) {
                 var parkinglot_list = [],
                     isAddBR = data.length > 5 ? true : false;
                 data.forEach(function (value, index) {
@@ -61,7 +61,7 @@ var request = (function ($) {
         },
         getSpotsLayout: function (lotID) {
             var req = this;
-            return $.get(req.baseUrl + req.spotLayoutSubUrl + lotID + ".lo").done(function (data) {
+            return $.get(req.baseUrl + req.spotLayoutSubUrl + lotID ).done(function (data) {
                 req.spotPositions = JSON.parse(data);
             }).fail(function () {
                 console.log("getLayout error");
@@ -69,7 +69,7 @@ var request = (function ($) {
         },
         getSpotsInfo: function (lotID) {
             var req = this;
-            return $.getJSON(req.baseUrl + req.spotInfoSubUrl + lotID + ".spots").done(function (data) {
+            return $.getJSON(req.baseUrl + req.spotInfoSubUrl + lotID ).done(function (data) {
                 req.spotsInfo = data;
                 $("#lot-img").attr("src", "img/" + lotID + ".png").removeAttr("style").removeAttr("data-src");
             }).fail(function () {
