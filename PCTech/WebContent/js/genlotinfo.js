@@ -49,34 +49,10 @@ function generatefilecontent() {
 }
 
 function downloadFile(fileName, content) {
-    //    var aLink = document.createElement('a');
-    //    var blob = new Blob([content]);
-    //    var evt = document.createEvent("HTMLEvents");
-    //    evt.initEvent("click", false, false); //initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
-    //    aLink.download = fileName;
-    //    aLink.href = URL.createObjectURL(blob);
-    //    aLink.dispatchEvent(evt);
-
-
-
-    var pom = document.createElement('a');
-    pom.setAttribute('href', 'data:text/json;charset=utf-8, ' + encodeURIComponent(content));
-    pom.setAttribute('download', fileName);
-    pom.setAttribute("style", "display:none");
-
-    document.body.appendChild(pom);
-
-    if (window.navigator.msSaveOrOpenBlob) {
-
-        blobObject = new Blob(content);
-        pom.click((function () {
-            window.navigator.msSaveOrOpenBlob(blobObject, fileName);
-        })());
-    } else {
-        pom.click();
-    }
-
-    document.body.removeChild(pom);
+    var blob = new Blob([content], {
+        type: "text/json;charset=utf-8"
+    });
+    saveAs(blob, fileName);
 }
 
 function makeVisiable() {
@@ -92,12 +68,27 @@ function addRow() {
     addcontent += "<td>" + $("#dataY1").val() + "</td>";
     addcontent += "<td>" + $("#dataX2").val() + "</td>";
     addcontent += "<td>" + $("#dataY2").val() + "</td>";
-    addcontent += "<td>" + $("#dataHeight").val() + "</td>";
     addcontent += "<td>" + $("#dataWidth").val() + "</td>";
+    addcontent += "<td>" + $("#dataHeight").val() + "</td>";
     addcontent += '<td><input class="orientation form-control" type="text" name="orientation" value="left"></td>';
     addcontent += '<td class="text-center"><button type="button" class="delete btn btn-danger btn-lg" onclick="deleteRow(this)">Delete</button></td>';
     Tr.innerHTML = addcontent;
-    $(Tr).find(".orientation").focusin(textFocus).blur(textBlur).popover({
+    $(Tr).find(".orientation").focusin(function () {
+        if (this.value === "left") {
+            this.value = "";
+        }
+    }).blur(function () {
+        if (this.value === "") {
+            this.value = "left";
+        } else if (this.value !== "left" && this.value !== "right") {
+            var obj = $(this);
+            obj.popover("show");
+            setTimeout(function () {
+                obj.popover("hide");
+            }, 5000);
+            this.value = "left";
+        }
+    }).popover({
         placement: 'top',
         content: "Only 'left' or 'right' is permitted!",
         trigger: "manual"
@@ -119,24 +110,9 @@ function testGenformVisible() {
     }
 }
 
-function textFocus() {
-    if (this.value === "left") {
-        this.value = "";
-    }
-}
 
-function textBlur() {
-    if (this.value === "") {
-        this.value = "left";
-    } else if (this.value !== "left" && this.value !== "right") {
-        var obj = $(this);
-        obj.popover("show");
-        setTimeout(function () {
-            obj.popover("hide");
-        }, 5000);
-        this.value = "left";
-    }
-}
+
+
 
 function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object

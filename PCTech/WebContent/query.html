@@ -81,72 +81,60 @@
                         <option value="wanzai">湾仔</option>
                         <option value="nanping">南屏镇</option>
                     </select>
+                    <input id="submitselect" type="button" class="btn btn-primary" value="确定" />
                 </div>
+
             </form>
         </div>
 
         <div id="lottable" class="lotpic container col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <br/>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
-            <a class="blockpic" href="#">***停车场</a>
+
         </div>
 
         <div class="clearfix"></div>
 
         <div id="lotinfotable" class="lotinfo col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-            <h1>南京1912停车场</h1>
+            <h1 id="lot-name">南京1912停车场</h1>
             <div class="lot-table container-fluid">
 
                 <div class="firstrow rowblock container-fluid">
                     <div class="col1 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">结构型式：</span>
-                        <span class="col-xs-8 tcontent">室内, 地下, 混凝土结构/层数：2/入口1个/出口1个/出入口同一个/出入口限高2.2</span>
+                        <span id="lot-architecture" class="col-xs-8 tcontent">室内, 地下, 混凝土结构/层数：2/入口1个/出口1个/出入口同一个/出入口限高2.2</span>
                     </div>
                     <div class="col2 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">营业时间：</span>
-                        <span class="col-xs-8 tcontent">24小时</span>
+                        <span id="lot-businessHours" class="col-xs-8 tcontent">24小时</span>
                     </div>
                 </div>
                 <div class="rowblock container-fluid">
                     <div class="col1 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">服务对象：</span>
-                        <span class="col-xs-8 tcontent">购物场所, 餐饮酒店, 景点</span>
+                        <span id="lot-client" class="col-xs-8 tcontent">购物场所, 餐饮酒店, 景点</span>
                     </div>
                     <div class="col2 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">主要设施：</span>
-                        <span class="col-xs-8 tcontent">智能化电脑扫描系统</span>
+                        <span id="lot-facility" class="col-xs-8 tcontent">智能化电脑扫描系统</span>
                     </div>
                 </div>
                 <div class="rowblock container-fluid">
                     <div class="col1 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">车位总数：</span>
-                        <span class="col-xs-8 tcontent">129</span>
+                        <span id="lot-quantity" class="col-xs-8 tcontent">129</span>
                     </div>
                     <div class="col2 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">剩余车位数：</span>
-                        <span class="col-xs-8 tcontent">50</span>
+                        <span id="lot-remain" class="col-xs-8 tcontent">50</span>
                     </div>
                 </div>
                 <div class="lastrow rowblock container-fluid">
                     <div class="col1 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">收费标准：</span>
-                        <span class="col-xs-8 tcontent">白天临时：5元/小时 夜间临时：5元/小时</span>
+                        <span id="lot-fee" class="col-xs-8 tcontent">白天临时：5元/小时 夜间临时：5元/小时</span>
                     </div>
                     <div class="col2 col col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <span class="col-xs-4 thead">地址：</span>
-                        <span class="col-xs-8 tcontent">太平北路长江后街路口(南京1912街区)</span>
+                        <span id="lot-address" class="col-xs-8 tcontent">太平北路长江后街路口(南京1912街区)</span>
                     </div>
                 </div>
             </div>
@@ -156,8 +144,8 @@
 
         <div id="realtimelot" class="rtinfo col-xs-12 col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 container">
             <h1>实时车位分布</h1>
-            <div class="lotmap">
-                <img class=" lotimg" src="holder.js/1000x400" alt="..." />
+            <div id="lot-map" class="lotmap">
+                <img id="lot-img" class="lotimg" src="js/holder.js/1000x400" alt="..." />
             </div>
         </div>
 
@@ -190,6 +178,7 @@
     <script src="js/holder.js"></script>
     <script src="js/highcharts/highcharts.js"></script>
     <script src="js/highcharts/modules/exporting.js"></script>
+    <script src="js/request.js"></script>
     <script src="js/main.js"></script>
 </body>
 
