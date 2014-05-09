@@ -1,0 +1,31 @@
+[{
+    "departureTime": null,
+    "entranceTime": "2014-01-14T12:01:59",
+    "id": "1",
+    "status": "1"
+}, {
+    "departureTime": null,
+    "entranceTime": "2014-01-14T12:01:59",
+    "id": "3",
+    "status": "1"
+}, {
+    "departureTime": null,
+    "entranceTime": "2014-01-14T12:01:59",
+    "id": "8",
+    "status": "1"
+}, {
+    "departureTime": null,
+    "entranceTime": "2014-01-14T12:01:59",
+    "id": "9",
+    "status": "1"
+}, {
+    "departureTime": null,
+    "entranceTime": "2014-01-14T12:01:59",
+    "id": "10",
+    "status": "1"
+}, {
+    "departureTime": null,
+    "entranceTime": "2014-01-14T12:01:59",
+    "id": "15",
+    "status": "1"
+}]

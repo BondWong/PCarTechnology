@@ -10,7 +10,7 @@ var request = (function ($) {
     "use strict";
 
     function LotRequest() {
-        this.baseUrl = "localhost:8080/PCTech/";
+        this.baseUrl = "";
         this.lotListSubUrl = "getParkingLots";
         this.lotInfoSubUrl = "getParkingLotData?requestDataType=parkingLotInfo&parkingLotID=";
         this.spotLayoutSubUrl = "getSpotsInfoFile?parkingLotID=";
@@ -21,7 +21,7 @@ var request = (function ($) {
     }
 
     LotRequest.prototype = {
-        getLotList: function (reqUrl) {
+        getLotList: function () {
             var req = this;
             return $.getJSON(req.baseUrl + req.lotListSubUrl).done(function (data) {
                 var parkinglot_list = [],
@@ -78,20 +78,28 @@ var request = (function ($) {
         },
         setCars: function () {
             $("#lot-map").children().remove(".overlay-img");
-            console.log(this.spotPositions);
             var req = this;
+//            this.spotPositions.forEach(function(pos){
+//                var array = [];
+//                array.push('<img class="overlay-img ');
+//                    array.push('orient-'+pos.orientation);
+//                array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car');
+//                if(pos.orientation==="up"||pos.orientation==="down"){
+//                    array.push("-up");
+//                }
+//                array.push('.png" alt="" />');
+//                $("#lot-map").append(array.join(''));
+//            });
             req.spotsInfo.forEach(function (info) {
                 var pos = req.spotPositions.filter(function (obj) {
                     return obj.id === info.id;
                 })[0];
                 var array = [];
                 array.push('<img class="overlay-img ');
-                if (pos.orientation === "left") {
-                    array.push('orient-left');
-                }
+                    array.push('orient-'+pos.orientation);
                 array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car.png" alt="" />');
                 $("#lot-map").append(array.join(''));
-            })
+            });
         }
     };
 

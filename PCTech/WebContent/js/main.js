@@ -13,9 +13,12 @@
      */
     $(document).ready(function () {
         initialize();
-        request.baseUrl = "";
-        
-        request.getLotList("lotlist").then(function () {
+//        request.baseUrl = "assets/";
+//        request.lotListSubUrl = "lotlist";
+//        request.lotInfoSubUrl = "lotinfo-";
+//        request.spotLayoutSubUrl = "layout-";
+//        request.spotInfoSubUrl = "spots-";
+        request.getLotList().then(function () {
             $(".blockpic").click(onParkinglotSelected);
         });
     });
@@ -51,7 +54,7 @@
                 $("#popup-info").css("display", "none");
             }, 1500);
 
-        }, 10000);
+        }, 30000);
     }
 
     function initialize() {

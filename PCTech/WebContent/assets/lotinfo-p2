@@ -1,0 +1,16 @@
+{
+    "ID": "p1",
+    "address": "中国",
+    "architecture": "1 floor",
+    "businessHours": "24hour",
+    "client": "owner",
+    "facility": "card",
+    "fee": "20yuan\/hour",
+    "joinTime": "2014-02-14T12:02:12",
+    "latitude": 3.2,
+    "longitude": 2.1,
+    "name": "xxxparkinglot",
+    "remark": null,
+    "spotQuantity": 30,
+    "remain": 24
+}
