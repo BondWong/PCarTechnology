@@ -26,7 +26,7 @@ public class GetSpotsInfoFileController extends ActionSupport implements Session
 	private Map<String,Object> httpSession;
 	
 	public String execute() throws Exception{
-		String path = getRoot()+"WEB-INF\\" + parkingLotID + "InfoFile.txt";
+		String path = getRoot()+"WEB-INF/" + parkingLotID + "infofile.txt";
 		
 		selectedFileData = (String) httpSession.get(path);
 		

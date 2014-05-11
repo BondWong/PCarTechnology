@@ -6,7 +6,7 @@
 
 <bean id="xxxparkinglot" class="org.apache.tomcat.jdbc.pool.DataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-    <property name="url" value="jdbc:mysql://172.27.35.4:3306/xxxparkinglot" />
+    <property name="url" value="jdbc:mysql://192.168.254.44:3306/xxxparkinglot" />
     <property name="username" value="root" />
     <property name="password" value="BM1003mb" />
     <property name="initialSize" value="10" />
@@ -16,7 +16,7 @@
 
 <bean id="yyyparkinglot" class="org.apache.tomcat.jdbc.pool.DataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://172.27.35.4:3306/yyyparkinglot" />
+	<property name="url" value="jdbc:mysql://192.168.254.44:3306/yyyparkinglot" />
 	<property name="username" value="root" />
     <property name="password" value="BM1003mb" />
     <property name="initialSize" value="10" />
