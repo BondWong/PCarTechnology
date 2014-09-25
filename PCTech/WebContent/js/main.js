@@ -13,20 +13,35 @@
      */
     $(document).ready(function () {
         initialize();
-//        request.baseUrl = "assets/";
-//        request.lotListSubUrl = "lotlist";
-//        request.lotInfoSubUrl = "lotinfo-";
-//        request.spotLayoutSubUrl = "layout-";
-//        request.spotInfoSubUrl = "spots-";
+        request.baseUrl = "assets/";
+        request.lotListSubUrl = "lotlist";
+        request.lotInfoSubUrl = "lotinfo-";
+        request.spotLayoutSubUrl = "layout-";
+        request.spotInfoSubUrl = "spots-";
         request.getLotList().then(function () {
             $(".blockpic").click(onParkinglotSelected);
+        });
+        $("#lot-map").dragScroll({});
+        $("#rtbtn").change(function () {
+
+            console.log("show rt");
+            $("#realtimelot").show();
+            $("#analysis").hide();
+
+        });
+        $("#alybtn").change(function () {
+
+            console.log("show aly");
+            $("#realtimelot").hide();
+            $("#analysis").show();
+
         });
     });
 
     function onParkinglotSelected(event) {
         var lotId = event.target.dataset.id;
         console.log(lotId);
-        $("#lotinfotable,#realtimelot,#analysis").css("display", "inherit");
+        //$("#lotinfotable,#realtimelot,#analysis").css("display", "inherit");
         if (lotId === request.lastLotID) {
             console.log(event.target);
             return;
@@ -59,7 +74,7 @@
 
     function initialize() {
         initChart();
-        $("#lotinfotable,#realtimelot,#analysis").css("display", "none");
+        // $("#lotinfotable,#realtimelot,#analysis").css("display", "none");
     }
 
     function initChart() {
@@ -90,10 +105,9 @@
                 valueSuffix: '°C'
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
             },
             series: [{
                 name: 'Tokyo',

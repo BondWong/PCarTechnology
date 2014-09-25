@@ -24,20 +24,16 @@ var request = (function ($) {
         getLotList: function () {
             var req = this;
             return $.getJSON(req.baseUrl + req.lotListSubUrl).done(function (data) {
-                var parkinglot_list = [],
-                    isAddBR = data.length > 5 ? true : false;
+                var parkinglot_list = [];
                 data.forEach(function (value, index) {
-                    parkinglot_list.push('<a class="blockpic" href="#lotinfotable"');
+                    parkinglot_list.push('<tr><td><a class="blockpic" href="#lotinfotable"');
                     parkinglot_list.push(' data-id="' + value[0] + '">');
                     parkinglot_list.push(value[1]);
-                    parkinglot_list.push('</a>');
-                    if (isAddBR && index > 0 && index % data.length === 0) {
-                        parkinglot_list.push('<br/>');
-                    }
+                    parkinglot_list.push('</a></td></tr>');
                 });
 
                 // 利用array的join合成html代码后，插入到网页中
-                $("#lottable").html(parkinglot_list.join(''));
+                $("#lotlisttable").html(parkinglot_list.join(''));
             }).fail(function () {
                 console.log("getLotList error ");
             });
@@ -61,7 +57,7 @@ var request = (function ($) {
         },
         getSpotsLayout: function (lotID) {
             var req = this;
-            return $.get(req.baseUrl + req.spotLayoutSubUrl + lotID ).done(function (data) {
+            return $.get(req.baseUrl + req.spotLayoutSubUrl + lotID).done(function (data) {
                 req.spotPositions = JSON.parse(data);
             }).fail(function () {
                 console.log("getLayout error");
@@ -69,7 +65,7 @@ var request = (function ($) {
         },
         getSpotsInfo: function (lotID) {
             var req = this;
-            return $.getJSON(req.baseUrl + req.spotInfoSubUrl + lotID ).done(function (data) {
+            return $.getJSON(req.baseUrl + req.spotInfoSubUrl + lotID).done(function (data) {
                 req.spotsInfo = data;
                 $("#lot-img").attr("src", "img/" + lotID + ".png").removeAttr("style").removeAttr("data-src");
             }).fail(function () {
@@ -79,24 +75,24 @@ var request = (function ($) {
         setCars: function () {
             $("#lot-map").children().remove(".overlay-img");
             var req = this;
-//            this.spotPositions.forEach(function(pos){
-//                var array = [];
-//                array.push('<img class="overlay-img ');
-//                    array.push('orient-'+pos.orientation);
-//                array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car');
-//                if(pos.orientation==="up"||pos.orientation==="down"){
-//                    array.push("-up");
-//                }
-//                array.push('.png" alt="" />');
-//                $("#lot-map").append(array.join(''));
-//            });
+            //            this.spotPositions.forEach(function(pos){
+            //                var array = [];
+            //                array.push('<img class="overlay-img ');
+            //                    array.push('orient-'+pos.orientation);
+            //                array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car');
+            //                if(pos.orientation==="up"||pos.orientation==="down"){
+            //                    array.push("-up");
+            //                }
+            //                array.push('.png" alt="" />');
+            //                $("#lot-map").append(array.join(''));
+            //            });
             req.spotsInfo.forEach(function (info) {
                 var pos = req.spotPositions.filter(function (obj) {
                     return obj.id === info.id;
                 })[0];
                 var array = [];
                 array.push('<img class="overlay-img ');
-                    array.push('orient-'+pos.orientation);
+                array.push('orient-' + pos.orientation);
                 array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car.png" alt="" />');
                 $("#lot-map").append(array.join(''));
             });
