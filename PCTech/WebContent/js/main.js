@@ -13,11 +13,11 @@
      */
     $(document).ready(function () {
         initialize();
-        request.baseUrl = "assets/";
-        request.lotListSubUrl = "lotlist";
-        request.lotInfoSubUrl = "lotinfo-";
-        request.spotLayoutSubUrl = "layout-";
-        request.spotInfoSubUrl = "spots-";
+//        request.baseUrl = "assets/";
+//        request.lotListSubUrl = "lotlist";
+//        request.lotInfoSubUrl = "lotinfo-";
+//        request.spotLayoutSubUrl = "layout-";
+//        request.spotInfoSubUrl = "spots-";
         request.getLotList().then(function () {
             $(".blockpic").click(onParkinglotSelected);
         });
@@ -41,7 +41,7 @@
     function onParkinglotSelected(event) {
         var lotId = event.target.dataset.id;
         console.log(lotId);
-        //$("#lotinfotable,#realtimelot,#analysis").css("display", "inherit");
+        $("#lotinfotable, .queryblock").css("display", "inherit");
         if (lotId === request.lastLotID) {
             console.log(event.target);
             return;
@@ -74,7 +74,7 @@
 
     function initialize() {
         initChart();
-        // $("#lotinfotable,#realtimelot,#analysis").css("display", "none");
+        $("#lotinfotable, .queryblock").css("display", "none");
     }
 
     function initChart() {
