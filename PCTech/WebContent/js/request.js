@@ -75,17 +75,6 @@ var request = (function ($) {
         setCars: function () {
             $("#lot-map").children().remove(".overlay-img");
             var req = this;
-            //            this.spotPositions.forEach(function(pos){
-            //                var array = [];
-            //                array.push('<img class="overlay-img ');
-            //                    array.push('orient-'+pos.orientation);
-            //                array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car');
-            //                if(pos.orientation==="up"||pos.orientation==="down"){
-            //                    array.push("-up");
-            //                }
-            //                array.push('.png" alt="" />');
-            //                $("#lot-map").append(array.join(''));
-            //            });
             req.spotsInfo.forEach(function (info) {
                 var pos = req.spotPositions.filter(function (obj) {
                     return obj.id === info.id;
@@ -93,9 +82,27 @@ var request = (function ($) {
                 var array = [];
                 array.push('<img class="overlay-img ');
                 array.push('orient-' + pos.orientation);
-                array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car.png" alt="" />');
+                array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car');
+                if (pos.orientation === "up" || pos.orientation === "down") {
+                    array.push("-up");
+                }
+                array.push('.png" alt="" />');
                 $("#lot-map").append(array.join(''));
             });
+            //            req.spotsInfo.forEach(function (info) {
+            //                var pos = req.spotPositions.filter(function (obj) {
+            //                    return obj.id === info.id;
+            //                })[0];
+            //                var array = [];
+            //                array.push('<img class="overlay-img ');
+            //                array.push('orient-' + pos.orientation);
+            //                if (pos.orientation === "up" || pos.orientation === "down") {
+            //                    array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.height + 'px;height:' + pos.width + 'px;" src="img/car.png" alt="" />');
+            //                } else {
+            //                    array.push('" style="top:' + pos.y1 + 'px;left:' + pos.x1 + 'px;width:' + pos.width + 'px;height:' + pos.height + 'px;" src="img/car.png" alt="" />');
+            //                }
+            //                $("#lot-map").append(array.join(''));
+            //            });
         }
     };
 

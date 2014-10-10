@@ -70,7 +70,6 @@ h2 {
     .lightspot {
         display: -webkit-inline-flex !important;
         display: -ms-inline-flexbox !important;
-        display: -webkit-inline-box !important;
         display: inline-flex !important;
         margin-bottom: 50px;
         background-color: rgba(80, 181, 255, 0.6);
@@ -136,11 +135,17 @@ a.blockpic:hover {
     color: #eb3737;
     background-color: #e6adad;
 }
+/*===============================================*/
+
+.lotconten {
+    display: none;
+}
 /*==========================lotinfo style==========================*/
 
 .lotinfo {
     margin-top: 20px;
     padding-bottom: 20px;
+    /*box-shadow:inset 0 0px 10px rgba(0,0,0,.6);*/
 }
 .lot-table {
     margin-top: 20px;
@@ -176,8 +181,8 @@ a.blockpic:hover {
 }
 .fix-group {
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 4%;
+    right: 3%;
 }
 /*===========================realtimeinfo style==============================*/
 
@@ -218,6 +223,17 @@ a.blockpic:hover {
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+.barble-box {
+    position: absolute;
+    bottom: 6%;
+    z-index: 100;
+    display: none;
+}
+.refresh-car {
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 42px #3564e5;
+}
 /*===============================analysis style================================*/
 
 .analysis {
@@ -227,17 +243,9 @@ a.blockpic:hover {
     display: none;
 }
 .chart {
-    width: auto;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
-}
-/*==========================popup barble style==============================*/
-
-.popup-info {
-    display: none;
-    text-align: center;
-    position: fixed;
-    bottom: 50px;
 }
 /* ==============================footer style ==============================*/
 
@@ -265,6 +273,7 @@ a.blockpic:hover {
     /* Set the fixed height of the footer here */
     height: 35px;
     background-color: rgba(0, 0, 0, 0.88);
+    z-index: 200;
 }
 .footer .container {
     height: 100%;
@@ -277,4 +286,35 @@ a.blockpic:hover {
 .btn-long {
     padding-left: 50px;
     padding-right: 50px;
+}
+/*=======================map-style========================*/
+
+#allmap {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+.BMap_mask {
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, .6);
+}
+.BMapLabel {
+    max-width: none;
+}
+#time-distance {
+    font-size: 1.2em;
+    position: absolute;
+    top: 5%;
+    right: 4%;
+    border: 1px solid #666;
+    border-radius: 0.8em;
+    box-shadow: 0 0 10px #afafaf;
+}
+#time-distance span {
+    vertical-align: middle;
+    padding: 0 1em 0 1em;
+}
+.map-form {
+    margin-top: 0.5em;
 }
